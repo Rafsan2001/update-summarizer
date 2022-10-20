@@ -1,0 +1,17 @@
+.reg-label{
+    font-weight: bold;
+}
+.reg-card{
+    border: 1.5px solid #B2BEB5;
+    border-radius: 15px;
+    background-color: #FAF9F6;
+}
+
+.reg-btn{
+    background-color: #28282B;
+    color: #FFFFFF;
+}
+.reg-btn:hover{
+    background-color: #000000;
+    color: #FFFFFF;
+}

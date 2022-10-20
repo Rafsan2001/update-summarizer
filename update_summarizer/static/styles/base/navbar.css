@@ -1,0 +1,28 @@
+.navigation-bar {
+    background-color: #101010;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.nav-brand-logo {
+    height: 30px;
+}
+.navbar-toggler {
+    background-color: #e7eef1 !important;
+}
+
+
+.btn-active {
+    background-color: #e7eef1;
+    color: #101010;
+}
+
+
+.sm-screen {
+    margin-top: 5px;
+}
+
+.navbar-toggler {
+    background-color: transparent !important;
+}
+

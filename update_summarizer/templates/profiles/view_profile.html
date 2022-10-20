@@ -1,0 +1,210 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+  <div class="row mt-3 gx-3 mb-4">
+    <div class="col-md-2">
+      <img
+        src="{{url_for('static', filename=current_user.profile.profile_photo)}}"
+        alt="Profile_photo"
+        class="profile_photo"
+      />
+    </div>
+    <div class="col-md-10">
+      <div class="d-flex">
+        <div>
+          <div class="mt-2">
+            <label class="label-vp">Name:</label>
+            <span class="element-vp"
+              >{{current_user.profile.get_fullname()}}</span
+            >
+          </div>
+          <div class="mt-2">
+            <label class="label-vp">Email:</label>
+            <span class="element-vp">{{current_user.email}}</span>
+          </div>
+          <div class="mt-2">
+            <label class="label-vp">Subscription:</label>
+            <span class="element-vp"
+              >{{current_user.profile.subscription.subscription_status}}</span
+            >
+          </div>
+          <div class="mt-2">
+            <span>Joined Date: {{current_user.get_joindate()}}</span>
+          </div>
+        </div>
+        <div style="margin-left: auto">
+          <button
+            title="Edit Profile"
+            type="button"
+            class="edit-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            <i class="bx bxs-cog"></i>
+          </button>
+          <button title="Change Password" type="button" class="change-pass-btn">
+            <i class="bx bxs-key"></i>
+          </button>
+          <br />
+        </div>
+      </div>
+      <!-- <div class="user-summary-count col-md-10">
+                <h4>Total Summary</h4>
+                <div class="number">21</div>
+                <a href="" class="profile-go-summary text-right" title="Generate New Summary">Create New</a>
+            </div>
+
+            <h4 class="mt-4">History</h4>
+            <div class="card shadow-sm headline-text col-md-10">
+                <p><b class="headline">Headline:</b>Indian, Pakistan military to discuss alleged Kashmir ceasefire
+                    violation</p>
+            </div> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="mt-4">
+        <h4 class="text-center">Total Summary</h4>
+        <div class="number">21</div>
+        <div style="text-align: center">
+          <a href="#" class="profile-go-summary" title="Generate New Summary"
+            >Create New</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="h">History</h4>
+      <div class="headline-text p-2">
+        <b class="headline">Headline:</b>Indian, Pakistan military to discuss
+        alleged Kashmir ceasefire violation Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Ut, velit.
+      </div>
+      <div class="headline-text p-2">
+        <b class="headline">Headline:</b>Indian, Pakistan military to discuss
+        alleged Kashmir ceasefire violation
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div
+          class="modal-header"
+          style="background-color: #faf9f6; height: 50px"
+        >
+          <h1 class="modal-title ms-auto fs-5" id="exampleModalLabel">
+            <b>Edit Profile</b>
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <span class="label-ep">Profile Picture:</span><br />
+            <div class="mt-3 text-center">
+              <div class="text-center">
+                <img
+                  src="{{url_for('static', filename=current_user.profile.profile_photo)}}"
+                  alt="Profile Photo"
+                  class="profile_photo_edit"
+                />
+              </div>
+              <div class="mt-2">
+                {% if form.profile_photo.errors %}
+                <div class="d-flex">
+                  {{ form.profile_photo(class="form-control is-invalid", id="profile_photo")}}
+                  <button
+                    type="button"
+                    class="btn btn-danger ms-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#delete-profile-modal"
+                  >
+                    Delete
+                  </button>
+                  <div class="invalid-feedback">
+                    {% for error in form.profile_photo.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                  {% else %}
+                  <div class="d-flex">
+                    {{ form.profile_photo(class="form-control",
+                    id="profile_photo") }}
+                    <a
+                      type="button"
+                      class="btn btn-danger ms-2"
+                      href="{{url_for('profiles.remove_profile_photo')}}"
+                    >
+                      Delete
+                    </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3 px-3 pb-3">
+              <div class="col">
+                {{ form.first_name.label(class="form-label mb-0 reg-label") }}
+                {% if form.first_name.errors %} {{
+                form.first_name(class="form-control input-box is-invalid")}}
+                <div class="invalid-feedback">
+                  {% for error in form.first_name.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% else %} {{ form.first_name(class="form-control input-box",
+                id="first_name") }} {% endif %}
+              </div>
+              <div class="col">
+                {{ form.last_name.label(class="form-label mb-0 reg-label") }} {%
+                if form.last_name.errors %} {{
+                form.last_name(class="form-control input-box is-invalid")}}
+                <div class="invalid-feedback">
+                  {% for error in form.last_name.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% else %} {{ form.last_name(class="form-control input-box",
+                id="last_name") }} {% endif %}
+              </div>
+            </div>
+            <div
+              class="modal-footer"
+              style="
+                background-color: #faf9f6;
+                height: 50px;
+                margin-bottom: 15px;
+              "
+            >
+              <button
+                type="button"
+                class="close_update_profile"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              {{form.save(class="update_profile")}}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</div>

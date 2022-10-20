@@ -1,0 +1,64 @@
+.user-details-card{
+    border: 1.5px solid #B2BEB5;
+    border-radius: 10px;
+    background-color: #F4F5FF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.user-details-card-title{
+    font-size: 10px;
+}
+.user-details-card-digit{
+    font-size: 20px;
+    font-weight: bold;
+}
+.user-details-card:hover{
+    border: 1.5px solid black;
+    background: #28282B;
+    color: #FFFFFF;
+}
+.graph-card{
+    border: 1.5px solid #B2BEB5;
+    border-radius: 10px;
+    background-color: #F4F5FF;
+}
+.graph-margin{
+    margin-left: 5px;
+}
+.graph-user-traffic{
+    background: white;
+    width: 70%;
+    margin-right: 5px;
+    border-right:1.5px solid #B2BEB5;
+    border-top: 1.5px solid #B2BEB5;
+    border-bottom: 1.5px solid #B2BEB5;
+}
+.feedback-card{
+    border: 1.5px solid #B2BEB5;
+    border-radius: 10px;
+    background-color: #F4F5FF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.feedback-user{
+    font-size: 15px;
+}
+.user-label{
+    font-size: 15px;
+    font-weight: bold;
+}
+.user-name{
+    font-size: 15px;
+}
+.title-name{
+    font-size: 15px;
+    font-weight: bold;
+}
+.pie{
+    width: 400px;
+}
+.card-fed{
+    border: 1.5px solid #B2BEB5;
+    border-radius: 10px;
+    background-color: #F4F5FF;
+}

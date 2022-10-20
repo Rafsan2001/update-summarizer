@@ -1,0 +1,202 @@
+<nav style="border-bottom: 1px solid #202124">
+  <div class="logo">
+    <i class="bx bx-menu menu-icon" style="font-size: 30px"></i>
+    <a class="navbar-brand" href="{{ url_for('main.homepage') }}">
+      <span class="logo-name">Update Summarizer</span>
+    </a>
+    
+  </div>
+  <div class="sidebar" style="border-right:  1px solid #B2BEB5">
+    <div class="logo">
+      <i class="bx bx-menu menu-icon" style="font-size: 32px"></i>
+      <span><b>Update Summarizer</b></span>
+    
+    </div>
+    <div class="sidebar-content">
+      <ul class="lists">
+        <hr style="border: 0.5px solid black;">
+        <li class="list">
+          <a href="{{url_for('profiles.view_profile')}}" class="nav-link">
+            <i class="bx bxs-user icon"></i>
+            <span class="link">Profile</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="{{url_for('admin.dashboard')}}" class="nav-link">
+            <i class="bx bxs-dashboard icon"></i>
+            <span class="link">Dashboard</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#" class="nav-link">
+            <i class="bx bxs-analyse icon"></i>
+            <span class="link">Summarizer</span>
+          </a>
+        </li>
+        <li class="list" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+          <a href="#" class="nav-link">
+            <i class="bx bxs-wallet icon"></i>
+            <span class="link">My Plan</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="{{ url_for('main.premium')}}" class="nav-link">
+            <i class="bx bxs-diamond icon"></i>
+            <span class="link">Pricing</span>
+          </a>
+        </li>
+        <li class="list" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-star icon"></i>
+            <span class="link">Rate Us</span>
+          </a>
+        </li>
+        <li class="list" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+          <a href="#" class="nav-link">
+            <i class="bx bxs-message icon"></i>
+            <span class="link">Feedback</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="{{ url_for('main.help')}}" class="nav-link">
+            <i class="fa-solid fa-question icon"></i>
+            <span class="link">Help</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="{{ url_for('main.about_us')}}" class="nav-link">
+            <i class="bx bxs-briefcase icon"></i>
+            <span class="link">About Us</span>
+          </a>
+        </li>
+        <hr style="border: 0.5px solid black;">
+        <li class="list">
+          <a href="{{ url_for('auth.logout') }}" class="nav-link logout">
+            <i class="bx bxs-log-out icon"></i>
+            <span class="link">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="ms-auto me-3 d-flex align-items-center hide" style="gap: 20px;">
+    <a class="upgrade" title="Purchase Premium Packs" href="{{url_for('main.premium')}}"><i class="fa-solid fa-crown" style="margin-right: 5px;"></i>Premium</a>
+    <span><i class="fa-solid fa-bell notification-logo"></i></i></span>
+    <span class="profile-show"><i class="fa-regular fa-user pro-view-logo"></i>{{current_user.profile.get_fullname() if current_user.profile else "User"}}</span>
+  </div>
+</nav>
+
+<section class="overlay"></section>
+
+<script>
+  const navBar = document.querySelector("nav"),
+    menuBtns = document.querySelectorAll(".menu-icon"),
+    overlay = document.querySelector(".overlay");
+
+  menuBtns.forEach((menuBtn) => {
+    menuBtn.addEventListener("click", () => {
+      navBar.classList.toggle("open");
+    });
+  });
+
+  overlay.addEventListener("click", () => {
+    navBar.classList.remove("open");
+  });
+</script>
+
+<!--Feedback Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable-xl">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #FAF9F6; height: 50px;">
+        <h5 class="modal-title ms-auto" id="exampleModalLabel"><b>Feedback Us</b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <span>Please tell us about your exprience</span>
+       <div>
+        <textarea class="from-control w-100 my-1 textarea_inp" rows="4" placeholder="Write your feedback here..."></textarea>
+       </div>
+       
+       
+      </div>
+      <div class="modal-footer"style="background-color: #FAF9F6; height: 50px; margin-bottom: 15px;">
+        <button type="button" class="cancel_feedback" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="send_feedback">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--My plan Modal -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabe3" aria-hidden="true">
+  <div class="modal-dialog modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #FAF9F6; height: 40px;">
+        <h5 class="modal-title ms-auto" id="exampleModalLabe3"><b>Current Pack</b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <span>Sorry! Currently you have no pack available.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Rate Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #FAF9F6; height: 50px;">
+        <h5 class="modal-title ms-auto" id="exampleModalLabel"><b>Rate Us</b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="star_rating">
+          <label>
+            <input type="radio" name="radio">
+            <div class="circle"></div>
+            <span>
+              <b>1</b><i class="fa-solid fa-star"></i>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="radio">
+            <div class="circle"></div>
+            <span>
+              <b>2</b><i class="fa-solid fa-star"></i>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="radio">
+            <div class="circle"></div>
+            <span>
+              <b>3</b><i class="fa-solid fa-star"></i>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="radio">
+            <div class="circle"></div>
+            <span>
+              <b>4</b><i class="fa-solid fa-star"></i>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="radio">
+            <div class="circle"></div>
+            <span>
+              <b>5</b><i class="fa-solid fa-star"></i>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer" style="background-color: #FAF9F6; height: 50px; margin-bottom: 15px;">
+        <button type="button" class="cancel_rating" data-dismiss="modal">Cancel</button>
+        <button type="button" class="send_rating">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

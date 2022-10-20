@@ -1,0 +1,99 @@
+.pack-card{
+    margin-top: 50px;
+    background-color: #F4F5FF;
+    border-radius: 10px;
+} 
+.head-silver{
+    background: #C0C0C0;
+    border-radius: 10px;
+}
+.silver-title-text{
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: bold;
+    
+}
+.silver-features{
+    font-size: 15px;
+    margin-left: 10px; 
+    margin-right: 10px;
+}
+.purchase-now-silver-btn{
+    background-color: #C0C0C0;
+    color: #FFFFFF; 
+    border-radius: 5px;
+    padding: 10px 25px;
+    border: none;
+    font-weight: bold;
+    margin-bottom: 10px; 
+    text-decoration: none;
+}
+.purchase-now-silver-btn:hover{
+    background-color: #4e4e4c;
+    color: #000000;
+}
+.icon-silver{
+    color: #4e4e4c;
+}
+.head-gold{
+    background: #e5b73b;
+    border-radius: 10px;
+}
+.gold-title-text{
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: bold;
+}
+.gold-features{
+    font-size: 15px;
+    margin-left: 10px; 
+    margin-right: 10px;
+}
+.purchase-now-gold-btn{
+    background-color: #e5b73b;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 10px 25px;
+    border: none;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 10px; 
+}
+.purchase-now-gold-btn:hover{
+    background-color: #da9100;
+    color: #000000; 
+}
+.icon-gold{
+    color: #e5b73b;
+}
+.head-platinum{
+    background: #a7d8de;
+    border-radius: 10px;
+}
+.platinum-title-text{
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: bold;
+}
+.platinum-features{
+    font-size: 15px;
+    margin-left: 10px; 
+    margin-right: 10px;
+}
+.purchase-now-platinum-btn{
+    background-color: #a7d8de;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 10px 25px;
+    border: none;
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 10px; 
+}
+.purchase-now-platinum-btn:hover{
+    background-color: #6ebfc9;
+    color: #000000; 
+}
+.icon-platinum{
+    color: #a7d8de;
+}

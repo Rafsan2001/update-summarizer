@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+{% block add_styles %} <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/base/subscription_pack.css') }}"> {% endblock %}
+{% block content %}
+<div class="pick-up-line">
+    <h1>Any pick up line</h1>
+</div>
+<div class="semi-pick-up-line">
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora, minima?
+</div>
+<div class="container">
+    <div class="row gx-3">
+        <div class="col">
+            <div class="pack-card shadow">
+                <div class="head-silver">
+                    <span class="silver-title-text ms-2">Silver</span>
+                </div>
+                <div class="margin-card mt-3">
+                    <div class="silver-features">
+                        <i class="icon-silver fa fa-try"></i>
+                        <span style="margin-left: 6px"><b>Price: </b></span>
+                        <span>150 BDT</span>
+                    </div>
+                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                    <div class="silver-features">
+                        <i class="icon-silver fa-solid fa-repeat"></i>
+                        <span style="margin-left: 6px"><b>Chance: </b></span>
+                        <span>10 times per day</span>
+                    </div>
+                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                    <div class="silver-features">
+                        <i class="icon-silver fa-regular fa-clock"></i>
+                        <span style="margin-left: 6px"><b>Duration: </b></span>
+                        <span>7 Days</span>
+                    </div>
+                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href=""class="purchase-now-silver-btn">Purchase Now</a>
+                </div>
+                <div class="text-muted" style="text-align: center; margin-bottom: 15px;">No credit card required</div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="shadow pack-card">
+                <div class="head-gold">
+                    <span class="gold-title-text ms-2">Gold</span>
+                </div>
+                <div class="margin-card mt-3">
+                    <div class="gold-features">
+                        <i class="icon-gold fa fa-try"></i>
+                        <span style="margin-left: 6px"><b>Price: </b></span>
+                        <span>500 BDT</span>
+                    </div>
+                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                    <div class="gold-features">
+                        <i class="icon-gold fa-solid fa-repeat"></i>
+                        <span style="margin-left: 6px"><b>Chance: </b></span>
+                        <span>20 times per day</span>
+                    </div>
+                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                    <div class="gold-features">
+                        <i class="icon-gold fa-regular fa-clock"></i>
+                        <span style="margin-left: 6px"><b>Duration: </b></span>
+                        <span>1 month</span>
+                    </div>
+                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href=""class="purchase-now-gold-btn">Purchase Now</a>
+                </div>
+                <div class="text-muted" style="text-align: center; margin-bottom: 15px;">No credit card required</div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="shadow pack-card">
+                <div class="head-platinum">
+                    <span class="platinum-title-text ms-2">Platinum</span>
+                </div>
+                <div class="margin-card mt-3">
+                    <div class="platinum-features">
+                        <i class="icon-platinum fa fa-try"></i>
+                        <span style="margin-left: 6px"><b>Price: </b></span>
+                        <span>1000 BDT</span>
+                    </div>
+                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                    <div class="platinum-features">
+                        <i class="icon-platinum fa-solid fa-repeat"></i>
+                        <span style="margin-left: 6px"><b>Chance: </b></span>
+                        <span>Unlimited</span>
+                    </div>
+                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                    <div class="platinum-features">
+                        <i class="icon-platinum fa-regular fa-clock"></i>
+                        <span style="margin-left: 6px"><b>Duration: </b></span>
+                        <span>1 year</span>
+                    </div>
+                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href=""class="purchase-now-platinum-btn">Purchase Now</a>
+                </div>
+                <div class="text-muted" style="text-align: center; margin-bottom: 15px;">No credit card required</div>
+            </div>
+        </div>
+    
+        
+    </div>
+</div>
+{% endblock %}

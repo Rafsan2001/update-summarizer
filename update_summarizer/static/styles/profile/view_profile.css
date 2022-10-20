@@ -1,0 +1,149 @@
+.view-profile-card{
+    border: 1.5px solid #B2BEB5;
+    border-radius: 15px;
+    background-color: #F4F5FF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.profile_photo{
+    width: 100%;
+    border-radius: 50%;
+}
+.label-vp{
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.element-vp{
+    font-size: 1.4rem;
+    margin-left: 10px;
+    text-transform: capitalize;
+}
+.edit-btn{
+    background-color: #28282B;
+    color: #FFFFFF;
+    border-radius: 5px;
+    width: 40px;
+    padding: 3px;
+}
+.edit-btn:hover{
+    background-color: #000000;
+    color: #FFFFFF;
+    
+}
+
+.change-pass-btn{
+    background-color: #28282B;
+    color: #FFFFFF;
+    border-radius: 5px;
+    width: 40px;
+    padding: 3px;
+}
+.change-pass-btn:hover{
+    background-color: #000000;
+    color: #FFFFFF;
+}
+.ep-title{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.label-ep{
+    font-size: 1rem;
+    font-weight: bold;
+}
+.inp-name{
+    width: 100%;
+    border-radius: 5px;  
+}
+.submit-btn{
+    background-color: #28282B;
+    color: #FFFFFF;
+    margin-top: 5px;
+    border-radius: 5px;
+    margin-left: auto;
+    padding: 5px 10px;
+
+}
+.submit-btn:hover{
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.profile_photo_edit{
+    width: 45%;
+    border-radius: 50%;
+}
+
+.update_profile{
+    background-color: #2E8B57;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+  }
+  .update_profile:hover{
+    background-color: #006b41; 
+  }
+  .close_update_profile{
+    background-color: #28282B;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 5px 15px;
+    border: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+  }
+  .close_update_profile:hover{
+    background-color: #000000;
+    color: red; 
+  }
+
+  .user-summary-count{
+    margin-top: 100px;
+  }
+
+  .headline-text{
+    font-size: 17px;
+    border-radius: 10px;
+    background-color: #eff0f6;
+    padding: 5px;
+    margin-top: 3px;
+  }
+  .headline-text:hover{
+    background-color: #28282B;
+    color: #FFFFFF;
+
+  }
+  .headline{
+    margin-right: 10px;
+  }
+  .number{
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+  }
+.profile-go-summary{
+    background-color: #28282B;
+    color: #FFFFFF;
+    border-radius: 40px;
+    padding: 7px 25px;
+    border: none;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.profile-go-summary:hover{
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.h{
+  margin-top: 40px;
+}

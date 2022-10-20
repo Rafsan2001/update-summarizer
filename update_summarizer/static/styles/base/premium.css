@@ -1,0 +1,95 @@
+.pricing-card{
+    background-color: #F4F5FF;
+    border-radius: 10px;
+    padding: 0 !important;
+}
+.pick-up-line{
+    font-weight: 100px;
+    margin-top: 40px;
+    text-align: center;
+}
+.semi-pick-up-line{
+    text-align: center;
+}
+.price-card{
+    border-radius: 10px;  
+    border: 1.5px solid #B2BEB5;
+}
+.big-div{
+    margin-top: 40px;
+}
+.head-free{
+    background: #787878;
+    border-radius: 10px;
+}
+.head-premium{
+    background: #006b41;
+    border-radius: 10px;
+}
+.free-title-text{
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 30px;
+}
+.premium-title-text{
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 30px;
+}
+.free-status{
+    font-size: 20px;
+    font-weight: bold;
+}
+.pack-types{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.margin-card{
+    margin-left: 10px; 
+    margin-right: 10px;
+}
+.free-features{
+    font-size: 15px;
+    margin-left: 10px; 
+    margin-right: 10px;
+}
+.time-text{
+    font-size: 20px;
+    font-weight: bold;
+}
+.icon-color-premium{
+    color: #006b41;
+}
+.icon-color-free{
+    color: #787878;
+}
+.icon-color-free-res{
+    color: #CC0202;
+}
+.see-packs-btn{
+    background-color: #006b41;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 10px 25px;
+    border: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+.see-packs-btn:hover{
+    background-color: #2E8B57;
+    color: #FFFFFF; 
+}
+.free-bottom-text{
+    font-size: 16px;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+.arrow-icon{
+    color: #787878;
+    margin-left: 30px;
+    font-size: 30px;
+}

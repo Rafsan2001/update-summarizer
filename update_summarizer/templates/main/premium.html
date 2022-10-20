@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="pick-up-line">
+    <h1>Any pick up line</h1>
+</div>
+<div class="semi-pick-up-line">
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora, minima?
+</div>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-4 col-sm-6 offset-sm-2 offset-md-2 shadow pricing-card mt-5 me-5">
+            <div class="head-free">
+                <span class="free-title-text ms-2">Free</span>
+            </div>
+            <div class="margin-card">
+                <div class="free-status">
+                    <i class="fa fa-try"></i>
+                    <span>Out of Cost</span>
+                </div>
+                <div>Everyday limit 2 times!</div>
+                <hr style="border: 0.5px solid black;">
+            </div>
+            <div class="free-features">
+                <i class="icon-color-free fa-solid fa-circle-check"></i>
+                <span style="margin-left: 6px">free subscription feature here</span>
+            </div>
+            <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+            <div class="free-features">
+                <i class="icon-color-free fa-solid fa-circle-check"></i>
+                <span style="margin-left: 6px">free subscription feature here</span>
+            </div>
+            <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+            <div class="free-features">
+                <i class="icon-color-free fa-solid fa-circle-check"></i>
+                <span style="margin-left: 6px">free subscription feature here</span>
+            </div>
+            <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+            <div class="free-features">
+                <i class="icon-color-free fa-solid fa-circle-check"></i>
+                <span style="margin-left: 6px">free subscription feature here</span>
+            </div>
+            <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+            <div class="free-features">
+                <i class="icon-color-free-res fa-regular fa-circle-xmark"></i>
+                <span style="margin-left: 6px">free restriction feature here</span>
+            </div>
+            <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+            <div class="free-features">
+                <i class="icon-color-free-res fa-regular fa-circle-xmark"></i>
+                <span style="margin-left: 6px">free restriction feature here</span>
+            </div>
+            <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+            <div class="free-features">
+                <i class="icon-color-free-res fa-regular fa-circle-xmark"></i>
+                <span style="margin-left: 6px">free restriction feature here</span>
+            </div>
+            <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+            <div class="free-bottom-text">
+                <span class="text-muted">Buy subscription to enjoy premium access!</span>
+                <i class="arrow-icon fa-solid fa-circle-right"></i>
+            </div>
+        </div>
+    
+        <div class="col-md-4 col-sm-6 shadow pricing-card mt-5">
+            <div class="head-premium">
+                <span class="premium-title-text ms-2">Premium</span>
+            </div>
+            <div class="margin-card">
+                Three differnet types of pack
+                <div class="pack-types d-flex justify-content-between">
+                   <div class="time-text">Weekly</div>
+                   <div class="time-text">Monthly</div>
+                   <div class="time-text">Yearly</div>
+                </div>
+                <hr style="border: 0.5px solid black;">
+                <div class="free-features">
+                    <i class="icon-color-premium fa-solid fa-circle-check"></i>
+                    <span style="margin-left: 6px">Premium subscription feature here</span>
+                </div>
+                <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                <div class="free-features">
+                    <i class="icon-color-premium fa-solid fa-circle-check"></i>
+                    <span style="margin-left: 6px">Premium subscription feature here</span>
+                </div>
+                <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                <div class="free-features">
+                    <i class="icon-color-premium fa-solid fa-circle-check"></i>
+                    <span style="margin-left: 6px">Premium subscription feature here</span>
+                </div>
+                <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                <div class="free-features">
+                    <i class="icon-color-premium fa-solid fa-circle-check"></i>
+                    <span style="margin-left: 6px">Premium subscription feature here</span>
+                </div>
+                <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                <div class="free-features">
+                    <i class="icon-color-premium fa-solid fa-circle-check"></i>
+                    <span style="margin-left: 6px">Premium subscription feature here</span>
+                </div>
+                <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                <div class="free-features">
+                    <i class="icon-color-premium fa-solid fa-circle-check"></i>
+                    <span style="margin-left: 6px">Premium subscription feature here</span>
+                </div>
+                <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                <div class="free-features">
+                    <i class="icon-color-premium fa-solid fa-circle-check"></i>
+                    <span style="margin-left: 6px">Premium subscription feature here</span>
+                </div>
+                <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+            </div>
+            <div class="d-flex justify-content-center">
+                <a class="see-packs-btn" title="Explore Packs" href="{{url_for('main.subscription_pack')}}">See Packs</a>
+            </div>
+            <div class="text-muted" style="text-align: center; margin-bottom: 15px;">No credit card required</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
