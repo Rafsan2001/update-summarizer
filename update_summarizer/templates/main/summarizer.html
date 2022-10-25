@@ -1,0 +1,194 @@
+{% extends "layout.html" %} {% block add_styles %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='styles/base/summarizer.css') }}"
+/>
+{% endblock %} {% block content %}
+
+<div class="mt-5">
+  <div class="container px-5">
+    <div class="row">
+      <div class="d-flex w-100 align-items-center pill-menu px-0">
+        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active px-4"
+              id="pills-home-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-home"
+              type="button"
+              role="tab"
+              aria-controls="pills-home"
+              aria-selected="true"
+            >
+              File
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link px-4"
+              id="pills-profile-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-profile"
+              type="button"
+              role="tab"
+              aria-controls="pills-profile"
+              aria-selected="false"
+            >
+              Link
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link px-4"
+              id="pills-contact-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-contact"
+              type="button"
+              role="tab"
+              aria-controls="pills-contact"
+              aria-selected="false"
+            >
+              Text
+            </button>
+          </li>
+        </ul>
+        <div class="ms-auto summarizer-header">Summarizer</div>
+      </div>
+    </div>
+    <div class="row summarizer-content-holder">
+      <div class="col-md-6 responsive-border px-0">
+        <div class="card-body sum-element">
+          <div class="tab-content" id="pills-tabContent">
+            <div
+              class="tab-pane fade show active"
+              id="pills-home"
+              role="tabpanel"
+              aria-labelledby="pills-home-tab"
+              tabindex="0"
+            >
+              <!-- File -->
+              <form action="#" method="post">
+                <div class="file-input-holder px-2">
+                  <input
+                    type="file"
+                    class="form-control my-1"
+                    name="file-input"
+                    placeholder="Enter your file"
+                  />
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="d-flex btn-counter-holder">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-light btn-counter rounded-circle"
+                      id="input-file-btn-decrease"
+                    >
+                      -
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-counter btn-counter-show"
+                      id="input-file-btn-show"
+                      disabled
+                    >
+                      1
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-light btn-counter rounded-circle"
+                      id="input-file-btn-increase"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <input
+                    type="submit"
+                    class="btn btn-sm btn-primary my-2 ms-auto me-2 px-3"
+                  />
+                </div>
+              </form>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="pills-profile"
+              role="tabpanel"
+              aria-labelledby="pills-profile-tab"
+              tabindex="0"
+            >
+              <!-- Link -->
+              <form action="#" method="post" class="mt-2">
+                <div class="link-input-holder px-2">
+                  
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="d-flex btn-counter-holder">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-light btn-counter rounded-circle"
+                      id="input-link-btn-decrease"
+                    >
+                      -
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-counter btn-counter-show"
+                      id="input-link-btn-show"
+                      disabled
+                    >
+                      1
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-light btn-counter rounded-circle"
+                      id="input-link-btn-increase"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <input
+                    type="submit"
+                    class="btn btn-sm btn-primary my-2 ms-auto me-2 px-3"
+                  />
+                </div>
+              </form>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="pills-contact"
+              role="tabpanel"
+              aria-labelledby="pills-contact-tab"
+              tabindex="0"
+            >
+              <!-- Text -->
+              <form action="#" method="post" class="mt-2">
+                <textarea
+                  class="form-control text-input-field"
+                  placeholder="Enter your text"
+                ></textarea>
+                <div class="d-flex">
+                  <input
+                    type="submit"
+                    class="btn btn-sm btn-primary my-2 ms-auto me-2 px-3"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="output-summary">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam
+          quisquam ad culpa reprehenderit magni vitae ullam est? Blanditiis
+          molestias, maxime velit explicabo iste enim eos sunt officiis incidunt
+          ratione architecto.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/summarizer.js') }}"></script>
+{% endblock %}

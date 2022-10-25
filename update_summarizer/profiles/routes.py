@@ -20,7 +20,7 @@ def view_profile():
         current_user.profile.last_name = form.last_name.data
         if form.profile_photo.data:
             file_path = current_user.profile.profile_photo
-            if not ("/images/default/ProfilePhotos/default.png" in file_path):
+            if not ("/images/default/default.png" in file_path):
                 remove_photo(file_path)
             photo_file = save_photos(
                 form.profile_photo.data, current_user.id, "profile", 250, 250)
@@ -34,9 +34,9 @@ def view_profile():
 @profiles.route("/remove-profile-photo")
 @login_required
 def remove_profile_photo():
-    if not ("/images/default/ProfilePhotos/default.png" in current_user.profile.profile_photo):
+    if not ("/images/default/default.png" in current_user.profile.profile_photo):
         remove_photo(current_user.profile.profile_photo)
-        current_user.profile.profile_photo = "/images/default/ProfilePhotos/default.png"
+        current_user.profile.profile_photo = "/images/default/default.png"
         db.session.commit()
         flash("Profile photo removed.", "success")
     else:

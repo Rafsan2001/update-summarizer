@@ -28,3 +28,7 @@ def help():
 @main.route("/summary-details", methods=["GET"])
 def summary():
     return render_template("main/summary-details.html")
+
+@main.route("/summary-generate", methods=["GET"])
+def summarizer():
+    return render_template("main/summarizer.html")

@@ -61,6 +61,7 @@ from update_summarizer.auth.routes import auth
 from update_summarizer.main.routes import main
 from update_summarizer.profiles.routes import profiles
 from update_summarizer.admin.routes import admin
+from update_summarizer.feedbacks.routes import feedbacks
 
 @app.errorhandler(404) 
 def invalid_route(e): 
@@ -71,3 +72,4 @@ app.register_blueprint(auth)
 app.register_blueprint(main)
 app.register_blueprint(profiles)
 app.register_blueprint(admin)
+app.register_blueprint(feedbacks)

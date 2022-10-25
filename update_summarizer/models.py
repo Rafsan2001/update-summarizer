@@ -1,8 +1,6 @@
 from email.policy import default
 import enum
-from datetime import date, datetime
-from itertools import count
-from xmlrpc.client import DateTime
+from datetime import datetime
 
 from flask_login import UserMixin
 from itsdangerous import TimedSerializer
@@ -84,6 +82,8 @@ class Profile(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     subscription = db.relationship(
         "Subscription", backref="profile", uselist=False)
+    feedback = db.relationship("Feedback", backref="profile")
+    rating = db.relationship("Rating", backref="profile")
 
     def __init__(
         self,
@@ -103,18 +103,35 @@ class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    rating = db.Column(db.Integer)
     text = db.Column(db.String(50), nullable=False)
 
     def __init__(
         self,
-        rating: int,
         text: str,
         profile_id: int,
     ) -> None:
-        self.rating = rating
         self.text = text
         self.profile_id = profile_id
+    
+    def get_created_at(self):
+        return self.created_at.strftime("%d %B, %Y")
+
+class Rating(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    rating = db.Column(db.Integer, nullable=False)
+
+    def __init__(
+        self,
+        rating: str,
+        profile_id: int,
+    ) -> None:
+        self.rating = rating
+        self.profile_id = profile_id
+
+    def get_created_at(self):
+        return self.created_at.strftime("%d %B, %Y")
 
 
 class TrackSummary(db.Model):

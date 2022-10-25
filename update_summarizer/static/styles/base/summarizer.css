@@ -1,0 +1,68 @@
+.sum-head{
+    background-color: #110f09;
+    color: #FFFFFF;
+}
+
+textarea, .link-input-holder, .file-input-holder {
+    height: 350px;
+}
+
+.link-input-holder, .file-input-holder {
+    overflow-y: scroll;
+}
+
+.summarizer-content-holder {
+    border: 1px solid black;
+    border-top: 0;
+}
+
+.responsive-border {
+    border-right: 1px solid black;
+}
+
+.pill-menu {
+    background-color: rgb(120, 224, 120);
+}
+
+.nav-pills button {
+    border-radius: 0 !important;
+}
+
+.nav-pills button, .nav-pills button:hover {
+    color: #FFFFFF;
+}
+
+button.active {
+    background-color: rgb(7, 7, 7) !important;
+}
+
+.summarizer-header {
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    padding-right: 15px;
+}
+
+@media (max-width: 991.98px) {
+.responsive-border {
+    border-right: 0;
+    border-bottom: 1px solid black;
+}
+}
+
+.text-input-field {
+    border: 0;
+}
+
+.btn-counter-holder {
+    margin-left: 15px;
+}
+
+.btn-counter-show {
+    background-color: transparent;
+    border: 0;
+}
+
+.btn-counter {
+    border-radius: 0;
+}
+
