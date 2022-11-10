@@ -17,3 +17,15 @@ def dashboard():
     feedbacks = Feedback.query.order_by(Feedback.created_at.desc()).all()[:4]
     ratings = Rating.query.order_by(Rating.created_at.desc()).all()[:6]
     return render_template("admin/dashboard.html", len=len, feedbacks=feedbacks, ratings=ratings)
+
+@admin.route("/feedbacks", methods=["GET"])
+@login_required
+def all_feedback():
+    feedbacks = Feedback.query.order_by(Feedback.created_at.desc()).all()
+    return render_template("admin/feedbacks.html", len=len, feedbacks=feedbacks)
+
+@admin.route("/ratings", methods=["GET"])
+@login_required
+def all_rating():
+    ratings = Rating.query.order_by(Rating.created_at.desc()).all()
+    return render_template("admin/ratings.html", len=len, ratings=ratings)

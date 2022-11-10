@@ -10,18 +10,35 @@
     <div class="logo">
       <i class="bx bx-menu menu-icon" style="font-size: 32px"></i>
       <span><b>Update Summarizer</b></span>
-
     </div>
     <div class="sidebar-content">
       <ul class="lists">
-        <hr style="border: 0.5px solid black;">
+        <!-- <hr style="border: 0.5px solid black;"> -->
+        {% if not current_user.profile %}
+        <li class="list">
+          <a href="{{url_for('auth.login')}}" class="nav-link">
+            <i class="bx bxs-user icon"></i>
+            <span class="link">Sign In</span>
+          </a>
+        </li>
+        {% endif %}
+        {% if not current_user.profile %}
+        <li class="list">
+          <a href="{{url_for('auth.register_user')}}" class="nav-link">
+            <i class="bx bxs-user icon"></i>
+            <span class="link">Sign Up</span>
+          </a>
+        </li>
+        {% endif %}
+        {% if current_user.profile %}
         <li class="list">
           <a href="{{url_for('profiles.view_profile')}}" class="nav-link">
             <i class="bx bxs-user icon"></i>
             <span class="link">Profile</span>
           </a>
         </li>
-        {% if current_user.profile and current_user.role == 'ADMIN' %}
+        {% endif %}
+        {% if current_user.profile and current_user.role.value == 'admin' %}
         <li class="list">
           <a href="{{url_for('admin.dashboard')}}" class="nav-link">
             <i class="bx bxs-dashboard icon"></i>
@@ -30,23 +47,32 @@
         </li>
         {% endif %}
         <li class="list">
-          <a href="{{url_for('main.summarizer')}}" class="nav-link">
+          <a href="{{url_for('news.bangladesh')}}" class="nav-link">
+            <i class="fa-solid fa-maximize icon"></i>
+            <span class="link">Topics</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="{{url_for('main.homepage')}}" class="nav-link">
             <i class="bx bxs-analyse icon"></i>
             <span class="link">Summarizer</span>
           </a>
         </li>
+        {% if current_user.profile %}
         <li class="list" data-bs-toggle="modal" data-bs-target="#exampleModal3">
           <a href="#" class="nav-link">
             <i class="bx bxs-wallet icon"></i>
             <span class="link">My Plan</span>
           </a>
         </li>
+        {% endif %}
         <li class="list">
           <a href="{{ url_for('main.premium')}}" class="nav-link">
             <i class="bx bxs-diamond icon"></i>
             <span class="link">Pricing</span>
           </a>
         </li>
+        {% if current_user.profile %}
         <li class="list" data-bs-toggle="modal" data-bs-target="#exampleModal2">
           <a href="#" class="nav-link">
             <i class="fa-solid fa-star icon"></i>
@@ -59,6 +85,7 @@
             <span class="link">Feedback</span>
           </a>
         </li>
+        {% endif %}
         <li class="list">
           <a href="{{ url_for('main.help')}}" class="nav-link">
             <i class="fa-solid fa-question icon"></i>
@@ -71,7 +98,6 @@
             <span class="link">About Us</span>
           </a>
         </li>
-        <hr style="border: 0.5px solid black;">
         {% if current_user.profile %}
         <li class="list">
           <a href="{{ url_for('auth.logout') }}" class="nav-link logout">
@@ -84,15 +110,22 @@
     </div>
   </div>
   <div class="ms-auto me-3 d-flex align-items-center hide" style="gap: 20px;">
+    <a style="text-decoration: none;" href="{{url_for('main.homepage')}}"><i class="fa-solid fa-plus plus-logo"></i></a>
     {% if (not current_user.profile) or (current_user.profile and current_user.profile.subscription.subscription_status == 'free') %}
     <a class="upgrade" title="Purchase Premium Packs" href="{{url_for('main.premium')}}"><i class="fa-solid fa-crown"
       style="margin-right: 5px;"></i>Premium</a>
     {% endif %}
     {% if not current_user.profile %}
-    <span class="profile-show">Sign In</span>
-    <span class="profile-show">Sign Up</span>
+    <a href="{{url_for('auth.login')}}" style="text-decoration: none; color: #FFFFFF" class="profile-show">Sign In</a>
+    <a href="{{url_for('auth.register_user')}}" style="text-decoration: none; color: #FFFFFF" class="profile-show">Sign Up</a>
     {% else %}
-    <span><i class="fa-solid fa-bell notification-logo"></i></i></span>
+    <button type="button" class="btn position-relative">
+      <i class="fa-solid fa-bell notification-logo"></i>
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-2">
+        2
+      </span>
+    </button>
+    <!-- <span><i class="fa-solid fa-bell notification-logo"></i></i></span> -->
     <span class="profile-show"><i class="fa-regular fa-user pro-view-logo"></i><a style="text-decoration: none; color: #fff;"
         href="{{url_for('profiles.view_profile')}}">{{current_user.profile.get_fullname() if current_user.profile else
         "User"}}</a></span>
@@ -152,7 +185,7 @@
       <div class="modal-body">
         {% if current_user.profile and current_user.profile.subscription.subscription_status == 'free' %}
         <span>Sorry! Currently you have no pack available.</span>
-        {% else %}
+        {% elif current_user.ptofile %}
         <span>You have {{ current_user.profile.subscription.subscription_status }}</span>
         {% endif %}
       </div>

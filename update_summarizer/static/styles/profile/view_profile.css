@@ -27,8 +27,8 @@
     padding: 3px;
 }
 .edit-btn:hover{
-    background-color: #000000;
-    color: #FFFFFF;
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
     
 }
 
@@ -38,10 +38,11 @@
     border-radius: 5px;
     width: 40px;
     padding: 3px;
+    text-decoration: none;
 }
 .change-pass-btn:hover{
-    background-color: #000000;
-    color: #FFFFFF;
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
 }
 .ep-title{
     font-size: 20px;

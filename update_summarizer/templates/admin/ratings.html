@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-2">
+        <h4 class="mb-3">All Ratings:</h4>
+        {% if len(ratings) == 0 %}
+        <p class="text-center">No ratings yet</p>
+        {% else %}
+        {% for rating in ratings %}
+        <div class="col-md-4 mb-3">
+          <div class="head-rating">
+            <div>{{ rating.profile.get_fullname() }}</div>
+            <div>
+              {% for icon in range(rating.rating) %}
+              <i class="fa-solid fa-star"></i>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+      
+</div>
+{% endblock %}

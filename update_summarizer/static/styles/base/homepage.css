@@ -1,0 +1,153 @@
+.sum-head{
+    background-color: #28282B;
+    color: #FFFFFF;
+}
+
+textarea, .link-input-holder, .file-input-holder {
+    height: 400px;
+}
+
+.link-input-holder, .file-input-holder {
+    overflow-y: scroll;
+}
+
+
+.pill-menu {
+    background-color: #006b41;
+}
+
+.nav-pills button {
+    border-radius: 0 !important;
+}
+
+.nav-pills button, .nav-pills button:hover {
+    color: #FFFFFF;
+}
+
+button.active {
+    background-color: #28282B !important;
+}
+
+.summarizer-header {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding-right: 15px;
+    margin-right: 250px;
+}
+
+@media (max-width: 991.98px) {
+.responsive-border {
+    border-right: 0;
+    border-bottom: 1px solid black;
+}
+}
+
+.text-input-field {
+    border: 0;
+    margin-top: 0;
+}
+
+.btn-counter-holder {
+    margin-left: 15px;
+}
+
+.btn-counter-show {
+    background-color: transparent;
+    border: 0;
+}
+
+.btn-counter {
+    border-radius: 0;
+}
+.sum-card{
+    border-radius: 0 0 0 15px;
+    
+}
+.sum-get-btn{
+    border-radius: 40px;
+    background-color: #2E8B57;
+    text-decoration: none;
+    padding: 10px;
+    color: #FFFFFF;
+}
+.sum-get-btn:hover{
+    background-color: #006b41;
+    color: #FFFFFF;
+}
+.head-sum-title{
+ border-radius: 15px 15px 0 0;
+}
+.summary-generate-card{
+    border-radius: 0 0 15px 0;
+}
+.responsive-border{
+    border-right: 2px solid rgb(237, 228, 228);
+}
+.output-summary{
+    overflow-y: scroll;
+    margin-top: 10px;
+    height: 450px;
+}
+.summarizer-content-holder{
+    border: 1px solid #006b41;
+}
+.inp-box{
+    border: 1px solid black;
+}
+.wrapper{
+    display: flex;
+    margin-left: 250px;
+}
+.wrapper .static-text{
+    color: #000000;
+    font-size: 50px;
+    font-weight: 450;
+}
+
+.wrapper .dynamic-text{
+    margin-left: 15px;
+    height: 90px;
+    line-height: 90px;
+    overflow: hidden;
+}
+
+.dynamic-text li{
+    color: rgb(218, 2, 2);
+    list-style: none;
+    font-size: 50px;
+    font-weight: 500;
+    position: relative;
+    top: 0;
+    animation: slide 6s steps(4) infinite;
+}
+@keyframes slide{
+    100%{
+        top: -350px;
+    }
+}
+
+.dynamic-text li span{
+    position: relative;
+    line-height: 90px;
+}
+.dynamic-text li span::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    animation: typing 1.5s steps(10) infinite;
+}
+
+@keyframes typing{
+    100%{
+        left: 100%; 
+    }
+}
+
+.click-text{
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: -15px;
+}

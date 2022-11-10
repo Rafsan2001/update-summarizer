@@ -10,6 +10,7 @@
 }
 .semi-pick-up-line{
     text-align: center;
+    font-size: 25px;
 }
 .price-card{
     border-radius: 10px;  
@@ -66,6 +67,9 @@
     color: #787878;
 }
 .icon-color-free-res{
+    color: #CC0202;
+}
+.free-not-access-text-color{
     color: #CC0202;
 }
 .see-packs-btn{

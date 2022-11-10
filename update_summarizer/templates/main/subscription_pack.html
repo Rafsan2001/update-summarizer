@@ -1,13 +1,14 @@
 {% extends "layout.html" %}
 {% block add_styles %} <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/base/subscription_pack.css') }}"> {% endblock %}
 {% block content %}
-<div class="pick-up-line">
-    <h1>Any pick up line</h1>
-</div>
-<div class="semi-pick-up-line">
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora, minima?
-</div>
+
 <div class="container">
+    <div class="row">
+        <div class="a">
+            <span class="text1">Purcase Any <b style="color: rgb(218, 2, 2);">Plan</b> </span>
+            <span class="text2">The more you <b style="color: #006b41;">pay</b> the more you <b style="color: #006b41;">get</b></span>
+          </div>
+    </div>
     <div class="row gx-3">
         <div class="col">
             <div class="pack-card shadow">
@@ -23,8 +24,8 @@
                     <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
                     <div class="silver-features">
                         <i class="icon-silver fa-solid fa-repeat"></i>
-                        <span style="margin-left: 6px"><b>Chance: </b></span>
-                        <span>10 times per day</span>
+                        <span style="margin-left: 6px"><b>Limit: </b></span>
+                        <span>5 times per day</span>
                     </div>
                     <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
                     <div class="silver-features">
@@ -54,8 +55,8 @@
                     <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
                     <div class="gold-features">
                         <i class="icon-gold fa-solid fa-repeat"></i>
-                        <span style="margin-left: 6px"><b>Chance: </b></span>
-                        <span>20 times per day</span>
+                        <span style="margin-left: 6px"><b>Limit: </b></span>
+                        <span>7 times per day</span>
                     </div>
                     <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
                     <div class="gold-features">
@@ -85,14 +86,14 @@
                     <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
                     <div class="platinum-features">
                         <i class="icon-platinum fa-solid fa-repeat"></i>
-                        <span style="margin-left: 6px"><b>Chance: </b></span>
-                        <span>Unlimited</span>
+                        <span style="margin-left: 6px"><b>Limit: </b></span>
+                        <span>10 times per day</span>
                     </div>
                     <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
                     <div class="platinum-features">
                         <i class="icon-platinum fa-regular fa-clock"></i>
                         <span style="margin-left: 6px"><b>Duration: </b></span>
-                        <span>1 year</span>
+                        <span>6 months</span>
                     </div>
                     <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
                 </div>

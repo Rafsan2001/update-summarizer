@@ -30,7 +30,7 @@
 }
 .purchase-now-silver-btn:hover{
     background-color: #4e4e4c;
-    color: #000000;
+    color: #FFFFFF;
 }
 .icon-silver{
     color: #4e4e4c;
@@ -61,7 +61,7 @@
 }
 .purchase-now-gold-btn:hover{
     background-color: #da9100;
-    color: #000000; 
+    color: #FFFFFF; 
 }
 .icon-gold{
     color: #e5b73b;
@@ -92,8 +92,48 @@
 }
 .purchase-now-platinum-btn:hover{
     background-color: #6ebfc9;
-    color: #000000; 
+    color:  #FFFFFF; 
 }
 .icon-platinum{
     color: #a7d8de;
 }
+
+.a{
+    text-align: center;
+    position: relative;
+    /* transform: translate(-50%,-50%); */
+    width: 100%;
+    margin-top: 70px;
+  }
+  .a span{
+    display: block;
+  }
+  .text1{
+    color: black;
+    font-size: 60px;
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+    position: relative;
+    animation: text 3s 1;
+  }
+  .text2{
+    margin-top: 15px;
+    font-size: 30px;
+    color: #000000;
+  }
+  
+  @keyframes text {
+    0%{
+      color: black;
+      margin-bottom: -40px;
+    }
+    30%{
+      letter-spacing: 25px;
+      margin-bottom: -40px;
+    }
+    85%{
+      letter-spacing: 8px;
+      margin-bottom: -40px;
+    }
+  }
+ 

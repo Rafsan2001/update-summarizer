@@ -1,0 +1,33 @@
+.head-title{
+    background-color: #e2e0da;
+    color: #000000;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 5px;
+
+    font-size: 20px;
+}
+
+
+.body-title{
+    border-radius: 0 0 8px 8px;
+    padding-left: 20px;
+}
+.sum-body-title{
+    background-color: #FAF9F6;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    
+}
+.title-related-news{
+    font-size: 18px;
+    color: #000000;
+    font-weight: bold;
+
+}
+.related-news-head{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}

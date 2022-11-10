@@ -264,3 +264,8 @@ nav.open ~ .overlay {
     display: none !important;
   }
 }
+
+.plus-logo{
+  color: #FFFFFF;
+  font-size: 20px;
+}

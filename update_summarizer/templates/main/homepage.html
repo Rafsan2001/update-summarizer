@@ -1,80 +1,210 @@
-{% extends "layout.html" %}
-{% block content %}
-{% include "main/index.html" %}
+{% extends "layout.html" %} {% block add_styles %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='styles/base/homepage.css') }}"
+/>
+{% endblock %} {% block content %}
 
-<div class="container form-brand">
-
-  <div class="row">
-      <div class="col-xl-6 offset-xl-3 col-md-10 offset-md-2">
-          <h2 style="color: #006b41;">Bangladesh</h2>
-        <div class="d-flex news-card mt-2">
-          <div class="col-md-4">
-            <img style="height: 100%;"src="{{ url_for('static', filename='images/uploads/card.JPG') }}" class="img-fluid rounded-start" alt="...">
-          </div>
-          <div class="col-md-8 mt-1 p-2" style="margin-left: 5px;">
-              <h5 class="card-title mb-1">Indian, Pakistan military to discuss alleged Kashmir ceasefire violation</h5>
-              <p class="text mb-0">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <a href="{{url_for('main.summary')}}" style="text-decoration: none;">
-                  <p class="card-text"><small class="text-muted see-more">See more...</small></p>
-                </a>
-                <p class="card-text"><small class="text-muted update-time">Last updated 3 mins ago</small></p>
-          </div>
+<div class="my-3">
+  <div class="container px-5">
+    <div class="row">
+      <div class="wrapper">
+        <div class="static-text mt-2">
+            Summarize any
         </div>
-        <div class="d-flex news-card mt-2">
-          <div class="col-md-4">
-            <img style="height: 100%;"src="{{ url_for('static', filename='images/uploads/card.JPG') }}" class="img-fluid rounded-start" alt="...">
-          </div>
-          <div class="col-md-8 mt-1 p-2" style="margin-left: 5px;">
-              <h5 class="card-title mb-1">Indian, Pakistan military to discuss alleged Kashmir ceasefire violation</h5>
-              <p class="text mb-0">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <a href="{{url_for('main.summary')}}" style="text-decoration: none;">
-                  <p class="card-text"><small class="text-muted see-more">See more...</small></p>
-                </a>
-                <p class="card-text"><small class="text-muted update-time">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        
+        <ul class="dynamic-text">
+            <li><span>Documents</span></li>
+            <li><span>Links</span></li>
+            <li><span>Texts</span></li>
+        </ul>
       </div>
+      <div class="text-center click-text">
+        <i>With some simple steps</i>
+      </div>
+      <div class="d-flex w-100 align-items-center pill-menu px-0 head-sum-title">
+        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active px-4"
+              id="pills-home-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-home"
+              type="button"
+              role="tab"
+              aria-controls="pills-home"
+              aria-selected="true"
+            >
+              File
+            </button>
+          </li>
+          <!-- <li class="nav-item" role="presentation">
+            <button
+              class="nav-link px-4"
+              id="pills-profile-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-profile"
+              type="button"
+              role="tab"
+              aria-controls="pills-profile"
+              aria-selected="false"
+            >
+              Link
+            </button>
+          </li> -->
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link px-4"
+              id="pills-contact-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-contact"
+              type="button"
+              role="tab"
+              aria-controls="pills-contact"
+              aria-selected="false"
+            >
+              Text
+            </button>
+          </li>
+        </ul>
+        <div class="ms-auto summarizer-header">Summary</div>
+      </div>
+    </div>
+    <div class="row summarizer-content-holder">
+      <div class="col-md-6 responsive-border px-0 sum-card">
+        <div class="card-body sum-element">
+          <div class="tab-content" id="pills-tabContent">
+            <div
+              class="tab-pane fade show active"
+              id="pills-home"
+              role="tabpanel"
+              aria-labelledby="pills-home-tab"
+              tabindex="0"
+            >
+              <!-- File -->
+              <form action="#" method="post">
+                <div class="file-input-holder px-2">
+                  <input
+                    type="file"
+                    class="form-control my-1"
+                    name="file-input"
+                    placeholder="Enter your file"
+                  />
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="d-flex btn-counter-holder">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-light btn-counter rounded-circle minus-btn"
+                      id="input-file-btn-decrease"
+                    >
+                      -
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-counter btn-counter-show"
+                      id="input-file-btn-show"
+                      disabled
+                    >
+                      1
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-light btn-counter rounded-circle plus-btn"
+                      id="input-file-btn-increase"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <a type="submit" class="sum-get-btn my-2 ms-auto me-3 px-3" href="#">Summary</a>
+                </div>
+              </form>
+            </div>
+            <!-- <div
+              class="tab-pane fade"
+              id="pills-profile"
+              role="tabpanel"
+              aria-labelledby="pills-profile-tab"
+              tabindex="0"
+            >
+              <form action="#" method="post" class="mt-2">
+                <div class="link-input-holder px-2">
+                  
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="d-flex btn-counter-holder">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-light btn-counter rounded-circle minus-btn"
+                      id="input-link-btn-decrease"
+                    >
+                      -
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-counter btn-counter-show"
+                      id="input-link-btn-show"
+                      disabled
+                    >
+                      1
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-light btn-counter rounded-circle plus-btn"
+                      id="input-link-btn-increase"
+                    >
+                      +
+                    </button>
+                  </div>
+                    <a type="submit" class="sum-get-btn my-2 ms-auto me-3 px-3" href="#">Summary</a>
+                
+                </div>
+              </form>
+            </div> -->
+            <div
+              class="tab-pane fade mt-0"
+              id="pills-contact"
+              role="tabpanel"
+              aria-labelledby="pills-contact-tab"
+              tabindex="0"
+            >
+              <!-- Text -->
+              <form action="#" method="post" class="mt-2">
+                <textarea
+                  class="form-control text-input-field"
+                  placeholder="Enter your text"
+                ></textarea>
+                <div class="d-flex">
+                  <a type="submit" class="sum-get-btn my-2 ms-auto me-3 px-3" href="#">Summary</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 summary-generate-card">
+        <div class="output-summary">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam
+          quisquam ad culpa reprehenderit magni vitae ullam est? Blanditiis
+          molestias, maxime velit explicabo iste enim eos sunt officiis incidunt
+          ratione architecto. lore Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam
+          quisquam ad culpa reprehenderit magni vitae ullam est? Blanditiis
+          molestias, maxime velit explicabo iste enim eos sunt officiis incidunt
+          ratione architecto. lore Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam
+          quisquam ad culpa reprehenderit magni vitae ullam est? Blanditiis
+          molestias, maxime velit explicabo iste enim eos sunt officiis incidunt
+          ratione architecto. lore Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam
+          quisquam ad culpa reprehenderit magni vitae ullam est? Blanditiis
+          molestias, maxime velit explicabo iste enim eos sunt officiis incidunt
+          ratione architecto. lore Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam
+          quisquam ad culpa reprehenderit magni vitae ullam est? Blanditiis
+  
+       
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- <div class="container">
-    <div class="col-md-8 mx-auto mt-2">
-        <div class="row">
-            <h2 style="color: #006b41;">Bangladesh</h2>
-        </div>
-        <div class="row">
-            <div class="card mb-3">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img style="height: 100%; margin-left: 0;"src="{{ url_for('static', filename='images/uploads/card.JPG') }}" class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">Indian, Pakistan military to discuss alleged Kashmir ceasefire violation</h5>
-                      <p class="card-text mb-0">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <a class="me-auto" href="{{url_for('main.summary')}}" style="text-decoration: none;"><p class="card-text me-auto"><small class="text-muted">See more...</small></p></a>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                  </div>
-                </div>
-            </div>  
-            <div class="card mb-3">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img style="height: 100%; margin-left: 0;"src="{{ url_for('static', filename='images/uploads/card.JPG') }}" class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">Indian, Pakistan military to discuss alleged Kashmir ceasefire violation</h5>
-                      <p class="card-text mb-0">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <a href="#" style="text-decoration: none;"><p class="card-text ms-auto"><small class="text-muted">See more...</small></p></a>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                  </div>
-                </div>
-            </div>     
-    </div>
-    </div>
-</div> -->
+<script src="{{ url_for('static', filename='js/summarizer.js') }}"></script>
 {% endblock %}

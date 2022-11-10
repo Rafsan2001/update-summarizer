@@ -34,16 +34,19 @@
         <div style="margin-left: auto">
           <button
             title="Edit Profile"
-            type="button"
-            class="edit-btn"
+            class="btn edit-btn"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
             <i class="bx bxs-cog"></i>
           </button>
-          <button title="Change Password" type="button" class="change-pass-btn">
+          <a
+            href="{{url_for('profiles.change_password')}}"
+            title="Change Password"
+            class="btn change-pass-btn"
+          >
             <i class="bx bxs-key"></i>
-          </button>
+          </a>
           <br />
         </div>
       </div>
@@ -67,7 +70,7 @@
         <h4 class="text-center">Total Summary</h4>
         <div class="number">21</div>
         <div style="text-align: center">
-          <a href="#" class="profile-go-summary" title="Generate New Summary"
+          <a href="{{ url_for('main.homepage') }}" class="profile-go-summary" title="Generate New Summary"
             >Create New</a
           >
         </div>
@@ -128,7 +131,8 @@
               <div class="mt-2">
                 {% if form.profile_photo.errors %}
                 <div class="d-flex">
-                  {{ form.profile_photo(class="form-control is-invalid", id="profile_photo")}}
+                  {{ form.profile_photo(class="form-control is-invalid",
+                  id="profile_photo")}}
                   <button
                     type="button"
                     class="btn btn-danger ms-2"

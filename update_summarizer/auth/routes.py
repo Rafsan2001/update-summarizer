@@ -16,7 +16,7 @@ from flask import (Blueprint, flash, redirect, render_template, request,
 
 from update_summarizer.mails import send_mail
 from update_summarizer.auth.forms import *
-from update_summarizer.auth.utils import generate_token, password_reset_key_mail_body
+from update_summarizer.auth.utils import generate_token, password_reset_key_mail_body, email_verify_mail_body
 from jwt import encode
 
 auth = Blueprint("auth", __name__, url_prefix="/auth")
@@ -56,12 +56,13 @@ def register_user():
         db.session.commit()
         # Sending email
         send_mail(user.email, "Email Verification Code",
-                  f"Your Token is {generated_token_for_email}")
+                  email_verify_mail_body(user.id, generated_token_for_email))
         fetched_user = User.query.filter_by(id=user.id).first()
         flash(
-            f"Account created for {fetched_user.profile.first_name} {fetched_user.profile.last_name}", "success")
+            f"Account created for {fetched_user.profile.first_name} {fetched_user.profile.last_name}. Check your email to continue.", "success")
         return redirect(url_for("auth.login"))
     return render_template("auth/register.html", form=form, active='register')
+
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
@@ -73,6 +74,10 @@ def login():
         fetched_user = User.query.filter_by(email=form.email.data).first()
         # Checking the email and password
         if fetched_user and bcrypt.check_password_hash(fetched_user.password, form.password.data):
+            if not fetched_user.is_verified:
+                flash("You need to verify your email address to login",
+                      category="danger")
+                return redirect(url_for("auth.login"))
             login_user_function(fetched_user, remember=form.remember_me.data)
             next_page = request.args.get("next")
             response = redirect(next_page) if next_page else redirect(
@@ -89,11 +94,29 @@ def login():
             flash("Login Failed! Please Check Email and Password.", "danger")
     return render_template("auth/login.html", form=form)
 
+
 @auth.route("/logout")
 @login_required
 def logout():
     logout_user_function()
     return redirect(url_for("auth.login"))
+
+
+@auth.route("/verify-email/<int:id>/<string:token>")
+def verify_email(id: int, token: str):
+    user = User.query.filter_by(id=id).first()
+    if not user:
+        flash('User not found.', category='danger')
+        return redirect(url_for('auth.login'))
+    isMatched = bcrypt.check_password_hash(user.verified_code, token)
+    if not isMatched:
+        flash('Token did not matched.', category='danger')
+    else:
+        user.verified_code = None
+        user.is_verified = True
+        db.session.commit()
+        flash('Your account is now verified.', category='success')
+    return redirect(url_for('auth.login'))
 
 
 @auth.route("/forget_password", methods=["GET", "POST"])
@@ -110,6 +133,7 @@ def forget_password():
         flash(f"Check your email to continue.", "primary")
         return redirect(url_for('auth.login'))
     return render_template("auth/forget_password.html", form=form)
+
 
 @auth.route("/reset_password/<int:id>/<string:token>", methods=["GET", "POST"])
 def reset_password(id: int, token: str):
@@ -130,5 +154,3 @@ def reset_password(id: int, token: str):
         flash(f"{veridication_result['message']}", "success")
         return redirect(url_for("auth.login"))
     return render_template("auth/reset_password.html", form=form)
-
-

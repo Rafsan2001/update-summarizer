@@ -6,7 +6,7 @@
     padding-bottom: 10px;
 }
 .user-details-card-title{
-    font-size: 10px;
+    font-size: 18px;
 }
 .user-details-card-digit{
     font-size: 20px;
@@ -84,5 +84,26 @@
     border-radius: 0 0 8px 8px;
 }
 .feedback-text{
-    margin-left: 10px; 
+    margin-left: 10px;
+    min-height: 40px; 
+}
+.see-more-feedback{
+    text-decoration: none;
+    display: inline-block;
+   text-align: right;
+   width: 100%;
+   color: #000000;
+}
+.see-more-feedback:hover{
+    color: #000000;
+}
+.see-more-rating{
+    text-decoration: none;
+    display: inline-block;
+   text-align: right;
+   width: 100%;
+   color: #000000;
+}
+.see-more-rating:hover{
+    color: #000000;
 }

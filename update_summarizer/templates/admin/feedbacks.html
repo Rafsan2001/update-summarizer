@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-4">
+        <h4 class="mb-3">All Feedbacks:</h4>
+        {% if len(feedbacks) == 0 %}
+        <p class="text-center">No feedback yet</p>
+        {% else %}
+        {% for feedback in feedbacks %}
+        <div class="col-md-6">
+          <div class="head">
+            <div>{{ feedback.profile.get_fullname() }}</div>
+            <div>{{ feedback.profile.subscription.subscription_status }}</div>
+            <div>{{ feedback.get_created_at() }}</div>
+          </div>
+          <div class="body">
+            <p class="feedback-text">{{ feedback.text }}</p>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+</div>
+{% endblock %}

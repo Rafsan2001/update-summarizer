@@ -34,7 +34,8 @@
     <div class="row">
 
 
-      <div class="mt-5 shadow-sm graph-card">
+      <!-- graph codee 
+        <div class="mt-5 shadow-sm graph-card">
         <div class="graph-margin mt-3">
           <span>User Traffic</span><br>
           <span class="text-muted">as of 18 April 2022, 12:10 AM</span>
@@ -49,19 +50,19 @@
           </div>
 
         </div>
-      </div>
+      </div> -->
     </div>
 
   </div>
 
 
-  <div class="row mt-2">
+  <div class="row mt-4">
     <h4>User Feedback</h4>
     {% if len(feedbacks) == 0 %}
     <p class="text-center">No feedback yet</p>
     {% else %}
     {% for feedback in feedbacks %}
-    <div class="col-md-6 mb-2">
+    <div class="col-md-6">
       <div class="head">
         <div>{{ feedback.profile.get_fullname() }}</div>
         <div>{{ feedback.profile.subscription.subscription_status }}</div>
@@ -72,6 +73,7 @@
       </div>
     </div>
     {% endfor %}
+    <a href="{{url_for('admin.all_feedback')}}" class="see-more-feedback">See All</a>
     {% endif %}
   </div>
 
@@ -92,6 +94,7 @@
       </div>
     </div>
     {% endfor %}
+    <a href="{{url_for('admin.all_rating')}}" class="see-more-rating">See All</a>
     {% endif %}
   </div>
 
