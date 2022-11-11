@@ -1,13 +1,11 @@
 import os
-import sys
 import xml.etree.ElementTree as ET
 from heapq import nlargest
 from string import punctuation
 
 import pandas as pd
 import spacy
-from flask import (Blueprint, Flask, flash, jsonify, redirect, render_template,
-                   request, session, url_for)
+from flask import Flask, render_template, request
 from spacy.lang.en.stop_words import STOP_WORDS
 from werkzeug.utils import secure_filename
 
@@ -17,7 +15,6 @@ nlp = spacy.load('en_core_web_sm')
 
 stopwords = list(STOP_WORDS)
 
-main = Blueprint("main", __name__)
 
 new_docs = {
     'topic': [],
@@ -79,7 +76,7 @@ def getSummary(text):
                 else:
                     sentence_score[sent] += word_frequencies[word.text.lower()]
 
-    select_length = int(len(sentence_tokens)*0.1 if num == 0 else 0.05)
+    select_length = int(len(sentence_tokens)*0.05)
     summary = nlargest(select_length, sentence_score, key=sentence_score.get)
     final_summary = [word.text for word in summary]
     summary = ' '.join(final_summary)
@@ -90,6 +87,7 @@ def fileRead(file_p, topic):  # read the file and save it to csv file
     t = ''
     global cnt
     with open(file_p, 'r') as f:
+        data = f.read()
         tree = ET.parse(file_p)
         try:
             headline_tag = tree.getroot().find('HEADLINE')
@@ -110,9 +108,12 @@ def fileRead(file_p, topic):  # read the file and save it to csv file
 
         if m > 0.8:
             g = 'Similarity found'
+            print(g)
         else:
             g = 'No Similarity found'
+            print(g)
             t += text
+            print(topic)
             new_docs['topic'].append(topic)
             new_docs['file'].append(file_p)
             new_docs['text'].append(text)
@@ -122,8 +123,7 @@ def fileRead(file_p, topic):  # read the file and save it to csv file
     return t
 
 
-# joint the text of all the files and Summarize it and save it to csv file
-def getSummery2(file_p, t):
+def getSummery2(t):  # joint the text of all the files and Summarize it and save it to csv file
     msg = ''
     global topic
     global cnt, cnt2
@@ -135,40 +135,24 @@ def getSummery2(file_p, t):
     docs['summary'].append(msg)
     summarized_df_new = pd.DataFrame(data=docs)
     summarized_df_new.to_csv('summarized_new.csv', index=False)
-    try:
-        os.unlink(file_p)
-    except Exception as e:
-        print(e)
     return msg
 
 
-@main.route("/", methods=["GET"])
-def homepage():
-    return render_template("main/homepage.html")
+# @app.route('/filee', methods=['GET', 'POST'])
+def filee():  # get how many files to upload
+    global num
+    if request.method == 'POST':
+        num = request.form['num']
+        if num is None:
+            num = 2
+        else:
+            num = int(num)
+        num = int(num)
+        return render_template('file_upload.html', num=num)
 
 
-@main.route("/premium", methods=["GET"])
-def premium():
-    return render_template("main/premium.html")
-
-
-@main.route("/subscription-pack", methods=["GET"])
-def subscription_pack():
-    return render_template("main/subscription_pack.html")
-
-
-@main.route("/about-us", methods=["GET"])
-def about_us():
-    return render_template("main/about_us.html")
-
-
-@main.route("/help", methods=["GET"])
-def help():
-    return render_template("main/help.html")
-
-
-@main.route("/summary-file", methods=["POST"])
-def file_upload():
+# @app.route('/fileu', methods=['GET', 'POST'])
+def file():  # upload files
     global topic
     global num
     c = ''
@@ -177,28 +161,21 @@ def file_upload():
     target = os.path.join(os.getcwd(), 'files/')
     if not os.path.isdir(target):
         os.mkdir(target)
-    topic = request.form.get('topic')
-    number = request.form.get('file-count')
-    for i in range(1, int(number)+1):
-        file = request.files.get(f'file-input-{i}')
-        filename = secure_filename(file.filename)
-        destination = "/".join([target, filename])
-        file.save(destination)
-        file_p = destination
-        # read files and save the text of all files in c
-        print('file_p: ', file_p)
-        c += fileRead(file_p, topic)
-        if c == '':
-            m = "Similer Document Found"
-        else:
-            msg = getSummery2(file_p, c)
-    return redirect(url_for('main.summarizer', m=m, msg=msg))
+    if request.method == 'POST':
+        topic = request.form['topic']
+        num = int(num)
+        for i in range(0, num):
 
+            file = request.files['file'+str(i)]
+            filename = secure_filename(file.filename)
+            destination = "/".join([target, filename])
+            file.save(destination)
+            file_p = destination
+            # read files and save the text of all files in c
+            c += fileRead(file_p, topic)
+            if c == '':
+                m = " Similer Document Found"
+            else:
+                msg = getSummery2(c)
 
-@main.route("/summary-generate", methods=["GET"])
-def summarizer():
-    m = request.args.get('m')
-    msg = request.args.get('msg')
-    if m:
-        flash(m, category='primary')
-    return render_template("main/homepage.html", msg=msg)
+    return render_template('file_upload.html', m=m, msg=msg, num=num)

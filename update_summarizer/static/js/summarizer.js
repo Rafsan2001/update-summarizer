@@ -18,7 +18,7 @@ window.onload = () => {
     // const ils = document.getElementById('input-link-btn-show');
     // const ili = document.getElementById('input-link-btn-increase');
     // let fieldInputCount = 1;
-
+    const fileCountHolder = document.querySelector('#file-count');
     const fileInputHolder = document.querySelector('.file-input-holder');
     const fld = document.getElementById('input-file-btn-decrease');
     const fls = document.getElementById('input-file-btn-show');
@@ -70,6 +70,7 @@ window.onload = () => {
         if (fileFieldsCount !== 1) {
             fileFieldsCount--;
             fls.innerText = fileFieldsCount;
+            fileCountHolder.value = parseInt(fileFieldsCount);
             fileInputHolder.removeChild(fileInputHolder.lastChild);
 
             if (fileFieldsCount <= 1) {
@@ -83,6 +84,7 @@ window.onload = () => {
     fli.addEventListener('click', () => {
         fileFieldsCount++;
         fls.innerText = fileFieldsCount;
+        fileCountHolder.value = parseInt(fileFieldsCount);
         generateFileInputBox(fileInputHolder, fileFieldsCount);
 
         if (fileFieldsCount <= 1) {
@@ -91,4 +93,25 @@ window.onload = () => {
             fld.disabled = false;
         }
     });
+
+    // const fileSubmitBtn = document.getElementById('file-submit');
+
+    // fileSubmitBtn.addEventListener('click', () => {
+    //     const formData = new FormData();
+    //     const inputFiles = document.querySelector('input[type="file"]')
+    //     formData.append('num', fileFieldsCount);
+
+    //     for (let i=1; i<=fileFieldsCount; i++) {
+    //         formData.append(`file-input-${i}`, inputFiles.files[i]);
+    //     }
+
+    //     fetch('/summary-generate', {
+    //         method: 'POST',
+    //         body: formData,
+    //     })
+    //     .then((response) => console.log('Success'))
+    //     .catch((error) => {
+    //         console.error('Error:', error);
+    //     });
+    // });    
 }

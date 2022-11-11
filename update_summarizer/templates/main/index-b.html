@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- <button class="navbar-toggler mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> -->
+        <button class="navbar-toggler mb-2 btn btn-sm" style="font-size: 0.8rem;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><i class="fa-solid fa-caret-down"></i> Topics</button>
+
+        <div class="collapse bg-light navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('news.bangla_news')}}">বাংলাদেশ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('news.international_bangla')}}">আন্তর্জাতিক</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('news.politics_bangla')}}">রাজনীতি</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('news.entertainments_bangla')}}">বিনোদন</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('news.buisness_bangla')}}">ব্যবসা</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('news.sports_bangla')}}">খেলাধুলা</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav md-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('news.english_news')}}">English</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -4,7 +4,7 @@
 }
 
 textarea, .link-input-holder, .file-input-holder {
-    height: 400px;
+    height: 350px;
 }
 
 .link-input-holder, .file-input-holder {
@@ -87,7 +87,8 @@ button.active {
 .output-summary{
     overflow-y: scroll;
     margin-top: 10px;
-    height: 450px;
+    max-height: 400px;
+    min-height: 400px;
 }
 .summarizer-content-holder{
     border: 1px solid #006b41;

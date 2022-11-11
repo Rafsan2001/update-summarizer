@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block add_styles %} <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/news/english/english-news.css')}}"> {% endblock %}
+{% block content %}
+{% include "main/index.html" %}
+
+<div class="container form-brand">
+
+  <div class="row">
+      <div class="col-xl-8  col-md-10 offset-md-2">
+          <h2 style="color: #006b41;">Sports</h2>
+        <div class="d-flex news-card mt-2">
+          <div class="col-md-4">
+            <img style="height: 100%;"src="{{ url_for('static', filename='images/uploads/card.JPG') }}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8 mt-1 p-2" style="margin-left: 5px;">
+              <h5 class="card-title mb-1">Indian, Pakistan military to discuss alleged Kashmir ceasefire violation</h5>
+              <p class="text mb-0">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <a href="{{url_for('news.details')}}" style="text-decoration: none;">
+                  <p class="card-text"><small class="text-muted see-more">See more...</small></p>
+                </a>
+                <p class="card-text"><small class="text-muted update-time">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="d-flex news-card mt-2">
+          <div class="col-md-4">
+            <img style="height: 100%;"src="{{ url_for('static', filename='images/uploads/card.JPG') }}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8 mt-1 p-2" style="margin-left: 5px;">
+              <h5 class="card-title mb-1">Indian, Pakistan military to discuss alleged Kashmir ceasefire violation</h5>
+              <p class="text mb-0">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <a href="{{url_for('news.details')}}" style="text-decoration: none;">
+                  <p class="card-text"><small class="text-muted see-more">See more...</small></p>
+                </a>
+                <p class="card-text"><small class="text-muted update-time">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        
+      </div>
+  </div>
+</div>
+
+{% endblock %}
