@@ -40,6 +40,14 @@ def details():
 def bangla_news():
     return render_template("news/bangla/bangla-news.html")
 
+@news.route("/bangla-details", methods=["GET"])
+def bangla_details():
+    return render_template("news/bangla/details.html")
+
+@news.route("/bangla-details2", methods=["GET"])
+def bangla_details2():
+    return render_template("news/bangla/details2.html")
+
 @news.route("/আন্তর্জাতিক", methods=["GET"])
 def international_bangla():
     return render_template("news/bangla/international.html")
@@ -60,6 +68,3 @@ def buisness_bangla():
 def sports_bangla():
     return render_template("news/bangla/sports.html")
 
-@news.route("/bangla-details", methods=["GET"])
-def bangla_details():
-    return render_template("news/bangla/details.html")
