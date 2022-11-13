@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block add_styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/news/english/details.css')}}"> {%
+endblock %}
+{% block content %}
+{% include "main/index.html" %}
+<div class="row">
+  <div class="col-md-10 offset-md-2 mx-auto my-2">
+    <h3>Summary:</h3>
+    <div class="sum-body-title">
+        The daily positivity rate is 0.85 percent while the total positivity rate stands at 13.53 percent.
+
+With the new infections, the total number of cases rose to 20,36,166, the release added.
+    </div>
+
+    <img style="height: 55vh;" src="{{ url_for('static', filename='images/news/english/e2.PNG')}}" class="w-60 mb-3"
+      alt="...">
+
+    <h1>1 Covid-19 death in 24hrs, positivity rate 0.85%</h1>
+    <p class="card-text"><small class="text-muted">Nov 13, 2022 05:02 PM</small></p>
+    <div class="my-3">
+
+      <p>One person died from Covid-19 in 24 hours till 8 am today (November 13, 2022), said a press release issued by the Directorate General of Health Services (DGHS).
+
+        The total number of deaths from Covid-19 is currently 29,427 in the country and the death rate stands at 1.45 percent.
+        
+        At least 35 new coronavirus cases were recorded during this period.
+        
+        The daily positivity rate is 0.85 percent while the total positivity rate stands at 13.53 percent.
+        
+        With the new infections, the total number of cases rose to 20,36,166, the release added.</p>
+      <p>A total of 4,114 samples were tested across the country during this period.
+
+        At least 183 Covid-19 patients have recovered within this time. The total number of recoveries now stands at 19,83,761 and the recovery rate at 97.43 percent, said the release.
+        
+        The lone deceased was a female, aged between 61-70 years old, added the release.</p>
+
+    </div>
+    <div class="my-3">
+      <h3>Related Documents:</h3>
+      <div class="mt-2">
+        <div class="title-related-news mb-1">No Covid-19 death in 24hrs, positivity rate 1.20%
+        </div>
+        <p class="text mb-0">No Covid-19 death was reported in 24 hours till 8:00 am today (November 12, 2022), said a press release issued by the Directorate General of Health Services (DGHS).
+
+            The total number of Covid-19 deaths in the country remains at 29,426 and the mortality rate is 1.45 percent.
+            
+            At least 22 new infections from Covid-19 were recorded in 24 hours. The total number of cases meanwhile rose to 20,36,131, added the release.
+            
+            The current positivity rate is 1.20 percent while the total positivity rate stands at 13.54 percent, said the press release.
+            
+            A total of 1,834 samples were tested across the country during this time.
+            
+            At least 154 patients recovered from Covid-19 during the period. The total number of recoveries now stands at 19,83,578 and the recovery rate at 97.42 percent, added the release.</p>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+</div>
+</div>
+</div>
+{% endblock %}

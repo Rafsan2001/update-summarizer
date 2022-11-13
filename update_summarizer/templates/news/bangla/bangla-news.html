@@ -6,7 +6,7 @@
 <div class="container form-brand">
 
     <div class="row">
-        <div class="col-xl-8  col-md-10 offset-md-2 mt-2">
+        <div class="col-xl-8  col-md-10 offset-xl-2 offset-md-1 mt-2">
             <h2 style="color: #006b41;">বাংলাদেশ</h2>
           <div class="d-flex news-card mt-2">
             <div class="col-md-4">
@@ -34,18 +34,37 @@
                   <p class="card-text"><small class="text-muted update-time">প্রকাশ: ১০ নভেম্বর ২০২২, ১৭: ৫৭</small></p>
             </div>
           </div>
+          <div class="d-flex news-card mt-2">
+            <div class="col-md-4">
+              <img style="height: 100%;"src="{{ url_for('static', filename='images/news/bangla/i1.PNG')}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8 mt-1 p-2" style="margin-left: 5px;">
+                <h4 class="card-title mb-1">টেসলার ৪০০ কোটি ডলারের শেয়ার বেচবেন ইলন মাস্ক</h4>
+                <p class="text mb-0">টুইটারের দায়িত্ব নিয়ে বিশ্বজুড়ে হইচই ফেলে দেওয়া ইলন মাস্ক টেসলার ৪০০ কোটি মার্কিন ডলারের শেয়ার বিক্রির ঘোষণা দিয়েছেন। ব্রিটিশ গণমাধ্যম বিবিসির এক প্রতিবেদনে এ তথ্য জানানো হয়েছে...</p>
+                  <a href="{{url_for('news.bangla_details_int_1')}}" style="text-decoration: none;">
+                    <p class="card-text"><small class="text-muted see-more">বিস্তারিত...</small></p>
+                  </a>
+                  <p class="card-text"><small class="text-muted update-time">প্রকাশ: ০৯ নভেম্বর ২০২২, ১০: ২৯</small></p>
+            </div>
+          </div>
+          <div class="d-flex news-card mt-2">
+            <div class="col-md-4">
+              <img style="height: 100%;"src="{{ url_for('static', filename='images/news/bangla/s1.PNG')}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8 mt-1 p-2" style="margin-left: 5px;">
+                <h4 class="card-title mb-1">নিগারের ঝোড়ো ফিফটি, ফারিহার হ্যাটট্রিকে মালয়েশিয়াকে পাত্তা দিল না বাংলাদেশ</h4>
+                <p class="text mb-0">ফারিহা ইসলামের সৌজন্যে মালয়েশিয়ার মেয়েদের ইনিংসের শুরুটা ভালো হয়নি। ব্যাটিং পাওয়ারপ্লেতে মাত্র ১৩ রান তুলতেই ৩ উইকেট হারান তাঁরা। ৩টিই পাওয়ারপ্লের শেষ ওভারে, টানা ৩ বলে। ফারিহার তৃতীয় ওভারের দ্বিতীয় বলটি মালয়েশিয়ার অধিনায়ক উইনিফ্রেড দুরাইসিঙ্গামের স্টাম্প ভেঙে দেয় দুর্দান্ত ইনসুইংয়ে। সুইং ছিল পরের বলেও। সেটিতেও এলবিডব্লুর শিকার নতুন ব্যাটার মাস এলিসা...</p>
+                  <a href="{{url_for('news.bangla_details_s_1')}}" style="text-decoration: none;">
+                    <p class="card-text"><small class="text-muted see-more">বিস্তারিত...</small></p>
+                  </a>
+                  <p class="card-text"><small class="text-muted update-time">প্রকাশ: ০৬ অক্টোবর ২০২২, ১৭: ৪৩</small></p>
+            </div>
+          </div>
           
         </div>
-    </div>
-    <div class="offcanvas offcanvas-end show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasLabel">Custom Ad</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-          <img class="img-add" src="{{ url_for('static', filename='images/add/img1.jpg') }}" alt="Add">   
-          <img class="img-add mt-3" src="{{ url_for('static', filename='images/add/img2.jpg') }}" alt="Add">
-      </div>
+        <div class="col-md-1 col-xl-2 mt-2">
+          <img src="{{ url_for('static', filename='images/news/english/ad.jpg')}}" alt="ad" />
+        </div>
     </div>
   </div>
 

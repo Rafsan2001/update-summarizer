@@ -143,6 +143,7 @@
                       +
                     </button>
                   </div>
+                  {% if current_user.profile %}
                   <button
                     type="submit"
                     class="sum-get-btn my-2 ms-auto me-3 px-3"
@@ -150,6 +151,16 @@
                   >
                     Summary
                   </button>
+                  {% else %}
+                  <a
+                  href="{{ url_for('auth.login')}}"
+                  type="submit"
+                  class="sum-get-btn my-2 ms-auto me-3 px-3"
+                  id="file-submit"
+                >
+                  Summary
+                </a>
+                {% endif %}
                 </div>
               </form>
             </div>
@@ -214,18 +225,28 @@
                   </select>
                 </div>
               </div>
-              <form action="#" method="post" class="mt-2">
+              <form method="POST"
+              action="{{ url_for('main.summary_text') }}" 
+               class="mt-2" enctype="multipart/form-data">
                 <textarea
                   class="form-control text-input-field"
-                  placeholder="Enter your text"
+                  placeholder="Enter your text" id="text" name="text"
                 ></textarea>
                 <div class="d-flex">
-                  <a
-                    type="submit"
+                  {% if current_user.profile %}
+                 <button type="submit"
+                 class="sum-get-btn my-2 ms-auto me-3 px-3"
+                 id="summary-text">
+                  Summary
+                 </button>
+                    {% else %}
+                    <button
+                    href="{{ url_for('auth.login')}}"
+                    type="button"
                     class="sum-get-btn my-2 ms-auto me-3 px-3"
-                    href="#"
-                    >Summary</a
-                  >
+                    id="summary-text"
+                    > Summary </button>
+                    {% endif %}
                 </div>
               </form>
             </div>
@@ -237,13 +258,16 @@
           <div class="output-summary" id="output-holder">
             {% if msg %} {{msg}} {% else %}
             <p class="text-mute text-center">
-              Your output will be shown there.
+              
+              
             </p>
+            
             {% endif %}
+            {{summary}}
           </div>
           <div class="align-self-end me-3 mb-1">
             <button class="btn btn-success"><i class="fa-solid fa-download"></i></button>
-            <button class="btn btn-primary"><i class="fa-solid fa-eraser"></i></button>
+            <a href="{{ url_for('main.homepage') }}" class="btn btn-primary"><i class="fa-solid fa-eraser"></i></a>
           </div>
         </div>
       </div>

@@ -48,6 +48,8 @@ def remove_slash_n(s: str) -> str:
     return s.replace('\n', '')
 
 
+
+
 def getSummary(text):
     doc = nlp(text)
     tokens = [token.text for token in doc]
@@ -84,6 +86,25 @@ def getSummary(text):
     final_summary = [word.text for word in summary]
     summary = ' '.join(final_summary)
     return summary
+
+df=pd.read_csv('merged2.csv')
+@main.route("/summary-text", methods=["POST"])
+def summary_text():
+    summary=''
+    if request.method=="POST":
+        text = request.form['text']
+        
+
+        #print(text)
+        num=1
+        summary=df['text'][0]
+
+        #summary =getSummary(text)
+        #print(summary)
+    
+    return redirect(url_for('main.summarizer', text=text))
+         
+
 
 
 def fileRead(file_p, topic):  # read the file and save it to csv file
@@ -183,6 +204,7 @@ def file_upload():
         file = request.files.get(f'file-input-{i}')
         filename = secure_filename(file.filename)
         destination = "/".join([target, filename])
+        
         file.save(destination)
         file_p = destination
         # read files and save the text of all files in c
@@ -197,8 +219,14 @@ def file_upload():
 
 @main.route("/summary-generate", methods=["GET"])
 def summarizer():
+    summary=request.args.get('text')
+
+    if summary=='':
+        flash('Enter text first',category='danger')
+    else:
+        summary=df['text'][0]
     m = request.args.get('m')
     msg = request.args.get('msg')
     if m:
         flash(m, category='primary')
-    return render_template("main/homepage.html", msg=msg)
+    return render_template("main/homepage.html", msg=msg,summary=summary)

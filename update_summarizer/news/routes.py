@@ -9,9 +9,21 @@ news = Blueprint("news", __name__)
 def english_news():
     return render_template("news/english/english-news.html")
 
+@news.route("/details", methods=["GET"])
+def english_details():
+    return render_template("news/english/details.html")
+
+@news.route("/details-2", methods=["GET"])
+def english_details_2():
+    return render_template("news/english/details-2.html")
+
 @news.route("/international", methods=["GET"])
 def international_english():
     return render_template("news/english/international.html")
+
+@news.route("/sports_i_1", methods=["GET"])
+def international_english_i_1():
+    return render_template("news/english/details-i-1.html")
 
 @news.route("/politics", methods=["GET"])
 def politics_english():
@@ -29,9 +41,11 @@ def buisness_english():
 def sports_english():
     return render_template("news/english/sports.html")
 
-@news.route("/details", methods=["GET"])
-def details():
-    return render_template("news/english/details.html")
+@news.route("/sports_s_1", methods=["GET"])
+def sports_english_s_1():
+    return render_template("news/english/details-s-1.html")
+
+
 
 
 
@@ -52,6 +66,10 @@ def bangla_details2():
 def international_bangla():
     return render_template("news/bangla/international.html")
 
+@news.route("/bangla-details-int-1", methods=["GET"])
+def bangla_details_int_1():
+    return render_template("news/bangla/details-int-1.html")
+
 @news.route("/রাজনীতি", methods=["GET"])
 def politics_bangla():
     return render_template("news/bangla/politics.html")
@@ -67,4 +85,8 @@ def buisness_bangla():
 @news.route("/খেলাধুলা", methods=["GET"])
 def sports_bangla():
     return render_template("news/bangla/sports.html")
+
+@news.route("/bangla-details-s-1", methods=["GET"])
+def bangla_details_s_1():
+    return render_template("news/bangla/details-s-1.html")
 
