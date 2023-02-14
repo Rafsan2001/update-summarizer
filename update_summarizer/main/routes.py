@@ -8,9 +8,11 @@ import pandas as pd
 import spacy
 from flask import (Blueprint, Flask, flash, jsonify, redirect, render_template,
                    request, session, url_for)
+from flask_login import current_user, login_required
 from spacy.lang.en.stop_words import STOP_WORDS
 from werkzeug.utils import secure_filename
 
+from update_summarizer import db
 from update_summarizer.main.cosine import cosine_similarity
 
 nlp = spacy.load('en_core_web_sm')
@@ -88,8 +90,15 @@ def getSummary(text):
     return summary
 
 df=pd.read_csv('merged2.csv')
+
 @main.route("/summary-text", methods=["POST"])
+@login_required
 def summary_text():
+    profile = current_user.profile
+    if profile.summary_left == 0:
+        flash('You have 0 summary token left. Come back tomorrow.', 'danger')
+        return redirect(url_for('main.homepage'))
+    
     summary=''
     if request.method=="POST":
         text = request.form['text']
@@ -101,7 +110,8 @@ def summary_text():
 
         #summary =getSummary(text)
         #print(summary)
-    
+        profile.summary_left = profile.summary_left - 1
+        db.session.commit()
     return redirect(url_for('main.summarizer', text=text))
          
 
@@ -189,7 +199,13 @@ def help():
 
 
 @main.route("/summary-file", methods=["POST"])
+@login_required
 def file_upload():
+    profile = current_user.profile
+    if profile.summary_left == 0:
+        flash('You have 0 summary token left. Come back tomorrow.', 'danger')
+        return redirect(url_for('main.homepage'))
+
     global topic
     global num
     c = ''
@@ -214,19 +230,24 @@ def file_upload():
             m = "Similer Document Found"
         else:
             msg = getSummery2(file_p, c)
+            profile.summary_left = profile.summary_left - 1
+            db.session.commit()
+
     return redirect(url_for('main.summarizer', m=m, msg=msg))
 
 
 @main.route("/summary-generate", methods=["GET"])
 def summarizer():
-    summary=request.args.get('text')
+    summary = request.args.get('text')
 
-    if summary=='':
-        flash('Enter text first',category='danger')
+    if summary == '':
+        flash('Enter text first', category='danger')
     else:
-        summary=df['text'][0]
+        summary = df['text'][0]
     m = request.args.get('m')
     msg = request.args.get('msg')
     if m:
         flash(m, category='primary')
+
+    
     return render_template("main/homepage.html", msg=msg,summary=summary)

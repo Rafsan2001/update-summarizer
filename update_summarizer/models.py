@@ -1,6 +1,6 @@
-from email.policy import default
 import enum
 from datetime import datetime
+from email.policy import default
 
 from flask_login import UserMixin
 from itsdangerous import TimedSerializer
@@ -80,6 +80,7 @@ class Profile(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    summary_left = db.Column(db.Integer)
     subscription = db.relationship(
         "Subscription", backref="profile", uselist=False)
     feedback = db.relationship("Feedback", backref="profile")
@@ -90,10 +91,12 @@ class Profile(db.Model):
         first_name: str,
         last_name: str,
         user_id: int,
+        summary_left: int=2,
     ) -> None:
         self.first_name = first_name
         self.last_name = last_name
         self.user_id = user_id
+        self.summary_left = summary_left
 
     def get_fullname(self):
         return f"{self.first_name} {self.last_name}"
@@ -163,7 +166,6 @@ class Subscription(db.Model):
         profile_id: int,
         exp_date,
         subscription_status: str = "free"
-
     ) -> None:
         self.exp_date = exp_date
         self.subscription_status = subscription_status

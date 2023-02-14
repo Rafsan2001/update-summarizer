@@ -5,19 +5,15 @@ from flask import (Blueprint, flash, redirect, render_template, request,
 from flask_login import current_user, login_required
 from flask_login import login_user as login_user_function
 from flask_login import logout_user as logout_user_function
-from update_summarizer import app, bcrypt, db
-
-from flask_login import logout_user as logout_user_function
-
-from update_summarizer.models import Profile, Role, Subscription, User
-
-from flask import (Blueprint, flash, redirect, render_template, request,
-                   session, url_for)
-
-from update_summarizer.mails import send_mail
-from update_summarizer.auth.forms import *
-from update_summarizer.auth.utils import generate_token, password_reset_key_mail_body, email_verify_mail_body
 from jwt import encode
+
+from update_summarizer import app, bcrypt, db
+from update_summarizer.auth.forms import *
+from update_summarizer.auth.utils import (email_verify_mail_body,
+                                          generate_token,
+                                          password_reset_key_mail_body)
+from update_summarizer.mails import send_mail
+from update_summarizer.models import Profile, Role, Subscription, User
 
 auth = Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -47,8 +43,7 @@ def register_user():
         db.session.add(user)
         db.session.commit()
         # Creating profile
-        profile = Profile(form.first_name.data, form.last_name.data,
-                          user.id)
+        profile = Profile(form.first_name.data, form.last_name.data, user.id, 2)
         db.session.add(profile)
         db.session.commit()
         subscription = Subscription(profile.id, None)

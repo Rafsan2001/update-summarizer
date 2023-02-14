@@ -12,37 +12,40 @@
     <div class="row gx-3">
         <div class="col">
             <div class="pack-card shadow">
-                <div class="head-silver">
-                    <span class="silver-title-text ms-2">Silver</span>
-                </div>
-                <div class="margin-card mt-3">
-                    <div class="silver-features">
-                        <i class="icon-silver fa fa-try"></i>
-                        <span style="margin-left: 6px"><b>Price: </b></span>
-                        <span>150 BDT</span>
+                <form method="POST" action="{{ url_for('checkout.create_checkout_session_silver') }}">
+                    <div class="head-silver">
+                        <span class="silver-title-text ms-2">Silver</span>
                     </div>
-                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
-                    <div class="silver-features">
-                        <i class="icon-silver fa-solid fa-repeat"></i>
-                        <span style="margin-left: 6px"><b>Limit: </b></span>
-                        <span>5 times per day</span>
+                    <div class="margin-card mt-3">
+                        <div class="silver-features">
+                            <i class="icon-silver fa fa-try"></i>
+                            <span style="margin-left: 6px"><b>Price: </b></span>
+                            <span>150 BDT</span>
+                        </div>
+                        <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                        <div class="silver-features">
+                            <i class="icon-silver fa-solid fa-repeat"></i>
+                            <span style="margin-left: 6px"><b>Limit: </b></span>
+                            <span>5 times per day</span>
+                        </div>
+                        <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
+                        <div class="silver-features">
+                            <i class="icon-silver fa-regular fa-clock"></i>
+                            <span style="margin-left: 6px"><b>Duration: </b></span>
+                            <span>7 Days</span>
+                        </div>
+                        <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
                     </div>
-                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
-                    <div class="silver-features">
-                        <i class="icon-silver fa-regular fa-clock"></i>
-                        <span style="margin-left: 6px"><b>Duration: </b></span>
-                        <span>7 Days</span>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="purchase-now-silver-btn">Purchase Now</button>
                     </div>
-                    <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a href=""class="purchase-now-silver-btn">Purchase Now</a>
-                </div>
+                </form>
                 <div class="text-muted" style="text-align: center; margin-bottom: 15px;">No credit card required</div>
             </div>
         </div>
         <div class="col">
             <div class="shadow pack-card">
+                <form method="POST" action="{{ url_for('checkout.create_checkout_session_gold') }}">
                 <div class="head-gold">
                     <span class="gold-title-text ms-2">Gold</span>
                 </div>
@@ -67,13 +70,15 @@
                     <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href=""class="purchase-now-gold-btn">Purchase Now</a>
+                    <button type="submit" class="purchase-now-gold-btn">Purchase Now</button>
                 </div>
+            </form>
                 <div class="text-muted" style="text-align: center; margin-bottom: 15px;">No credit card required</div>
             </div>
         </div>
         <div class="col">
             <div class="shadow pack-card">
+                <form method="POST" action="{{ url_for('checkout.create_checkout_session_platinum') }}">
                 <div class="head-platinum">
                     <span class="platinum-title-text ms-2">Platinum</span>
                 </div>
@@ -98,13 +103,12 @@
                     <hr style="border: 0.5px solid black; margin-left: 10px; margin-right: 10px;">
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href=""class="purchase-now-platinum-btn">Purchase Now</a>
+                    <button type="submit" class="purchase-now-platinum-btn">Purchase Now</button>
                 </div>
+            </form>
                 <div class="text-muted" style="text-align: center; margin-bottom: 15px;">No credit card required</div>
             </div>
         </div>
-    
-        
     </div>
 </div>
 {% endblock %}

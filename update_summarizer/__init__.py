@@ -1,9 +1,9 @@
 import os
-
 from datetime import datetime, timedelta
 
 from dotenv import load_dotenv
 from flask import Flask, render_template
+from flask_apscheduler import APScheduler
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
@@ -16,6 +16,8 @@ load_dotenv()
 
 # Create and Configure the App
 app = Flask(__name__)
+
+scheduler = APScheduler()
 
 # Secret Keys
 app.secret_key = os.getenv("SECRET_KEY")
@@ -56,13 +58,14 @@ login_manager.login_message_category = "primary"
 mail = Mail(app)
 
 import update_summarizer.models
-
-from update_summarizer.auth.routes import auth
-from update_summarizer.main.routes import main
-from update_summarizer.profiles.routes import profiles
 from update_summarizer.admin.routes import admin
+from update_summarizer.auth.routes import auth
+from update_summarizer.checkout.routes import checkout
 from update_summarizer.feedbacks.routes import feedbacks
+from update_summarizer.main.routes import main
 from update_summarizer.news.routes import news
+from update_summarizer.profiles.routes import profiles
+
 
 @app.errorhandler(404) 
 def invalid_route(e): 
@@ -75,3 +78,36 @@ app.register_blueprint(profiles)
 app.register_blueprint(admin)
 app.register_blueprint(feedbacks)
 app.register_blueprint(news)
+app.register_blueprint(checkout)
+
+from update_summarizer.models import User
+
+
+def job_check_expire_dates():
+    date_format = '%d/%m/%Y'
+    all_users = User.query.all()
+    for user in all_users:
+        sub = user.profile.subscription
+        if sub.subscription_status != 'free':
+            exp = datetime.strptime(sub.exp_date, date_format)
+            now = datetime.strptime(datetime.utcnow(), date_format)
+            
+            if now > exp:
+                # expired
+                user.subscription.subscription_status = 'free'
+                user.subscription.exp_date = None
+                user.subscription.updated_at = datetime.utcnow()
+                db.session.commit()
+
+def job_add_summary_token():
+    all_users = User.query.all()
+    for user in all_users:
+        sub = user.profile.subscription
+        if sub.subscription_status == 'free':
+            user.profile.summary_left = user.profile.summary_left + 1
+        elif sub.subscription_status == 'silver':
+            user.profile.summary_left = user.profile.summary_left + 5
+        elif sub.subscription_status == 'gold':
+            user.profile.summary_left = user.profile.summary_left + 7
+        else:
+            user.profile.summary_left = user.profile.summary_left + 10

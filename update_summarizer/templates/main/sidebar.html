@@ -122,7 +122,7 @@
     <button type="button" class="btn position-relative">
       <i class="fa-solid fa-bell notification-logo"></i>
       <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-2">
-        2
+        {{ current_user.profile.summary_left }}
       </span>
     </button>
     <!-- <span><i class="fa-solid fa-bell notification-logo"></i></i></span> -->
@@ -182,11 +182,13 @@
         <h5 class="modal-title ms-auto" id="exampleModalLabe3"><b>Current Pack</b></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        {% if current_user.profile and current_user.profile.subscription.subscription_status == 'free' %}
-        <span>Sorry! Currently you have no pack available.</span>
-        {% elif current_user.ptofile %}
-        <span>You have {{ current_user.profile.subscription.subscription_status }}</span>
+      <div class="modal-body text-center">
+        {% if current_user.profile %}
+        {% if current_user.profile.subscription.subscription_status == 'free' %}
+          <span>Sorry! Currently you have no pack available.</span>
+        {% else %}
+        <span>You have {{ current_user.profile.subscription.subscription_status }} plan.</span>
+        {% endif %}
         {% endif %}
       </div>
     </div>
