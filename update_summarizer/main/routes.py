@@ -1,23 +1,38 @@
+import math
 import os
-import sys
+import string
 import xml.etree.ElementTree as ET
 from heapq import nlargest
 from string import punctuation
 
+import chardet
+import nltk.data
 import pandas as pd
 import spacy
-from flask import (Blueprint, Flask, flash, jsonify, redirect, render_template,
-                   request, session, url_for)
+from bangla_stemmer.stemmer.stemmer import BanglaStemmer
+from bnlp import NLTKTokenizer
+from bnlp.corpus import digits, punctuations, stopwords
+from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
+from nltk import tokenize
 from spacy.lang.en.stop_words import STOP_WORDS
 from werkzeug.utils import secure_filename
 
 from update_summarizer import db
 from update_summarizer.main.cosine import cosine_similarity
+from update_summarizer.main.utils import web_scrap_return_text
 
 nlp = spacy.load('en_core_web_sm')
 
 stopwords = list(STOP_WORDS)
+
+import nltk
+
+nltk.download("punkt")
+nltk.download("stopwords")
+
+from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize
 
 main = Blueprint("main", __name__)
 
@@ -49,7 +64,104 @@ def remove_slash_n(s: str) -> str:
     """remove newline form a string"""
     return s.replace('\n', '')
 
+def get_summary_link(text):
 
+    bnltk = NLTKTokenizer()
+    text_sentences=bnltk.sentence_tokenize(text)
+    sentence_count = len(text_sentences)
+    wordFrequencyAllSentences = {} #dictionary to store dictionary of  sentences and wordFrequencyPerSentence
+    TFwordAllSentences = {} #dictionary to store dictionary of  sentences and TFWordPerSentence
+
+    for sentence in text_sentences:
+        word_list=bnltk.word_tokenize(sentence)
+        # pre-processing
+        word_list=BanglaStemmer().stem(word_list) # word stemming
+        word_list=[word for word in word_list if word not in punctuations] # removing punctuations
+        word_list=[word for word in word_list if word not in stopwords] # removing stopwords
+        word_list=[word for word in word_list if word not in digits] # removing digits
+        #calculating word frequency
+        wordFrequencyPerSentence = {} # dictionary to store word and its count
+    
+    for sentence in text_sentences:
+        for word in word_list:        
+            wordFrequencyPerSentence[word]=word_list.count(word) # repeating words will just overwrite the count of words so no problem
+            #print(wordFrequencyPerSentence[word])
+            wordFrequencyAllSentences[sentence] = wordFrequencyPerSentence
+            #print(wordFrequencyAllSentences)
+        
+        #calculating TF
+
+        TFWordPerSentence = {} # dictionary to store word and TF(word)
+        for word in word_list:        
+            TFWordPerSentence[word]=word_list.count(word) / len(word_list)
+            TFwordAllSentences[sentence] = TFWordPerSentence
+
+        #create a matrix of sentences and words
+    
+    termFrequencyMatrix = wordFrequencyAllSentences; 
+    
+    #counting word frequency in all sentences
+    allWords=bnltk.word_tokenize(text)
+    allWords=BanglaStemmer().stem(allWords) # word stemming
+    allWords=[word for word in allWords if word not in punctuations] # removing punctuations
+    allWords=[word for word in allWords if word not in stopwords] # removing stopwords
+    allWords=[word for word in allWords if word not in digits] # removing digits
+
+    allWords=set(allWords) # getting unique words in text
+
+    word_count= dict()
+    for word in allWords:
+        count=0
+        for sentence in text_sentences:
+            if(word in sentence): # check if word is present in sentence            
+                count=count+1 # count sentene
+        word_count[word]=count
+
+    #calculating IDF
+    IDFwordsAllSentences = {} #dictionary to store dictionary of  sentences and IDFwordPerSentence
+
+    totalSentences=len(text_sentences) ## for using in formula
+
+    for sentence in text_sentences:
+        IDFwordPerSentence = {} # dictionary to store word and its IDF
+        
+        for word in word_list:
+            if(word_count[word]==0):
+                pass
+            else:
+                IDFwordPerSentence[word]= math.log10(totalSentences / word_count[word]) # repeating words will just overwrite the count of words so no problem
+                IDFwordsAllSentences[sentence] = IDFwordPerSentence
+
+    #calculating TF-IDF for each word in each sentence
+    TF_IFDwordAllSentences=TFwordAllSentences
+
+    for key1, value1 in TFwordAllSentences.items():
+            #print(key1)
+            #print(value1)
+            for key2, value2 in value1.items():
+                TF_IFDwordAllSentences[key1][key2]=TFwordAllSentences[key1][key2] * IDFwordsAllSentences[key1][key2]
+                #print(value2)
+                break
+
+    #calculating weight of each sentence
+    weight_sentences={} # for storing weights of all sentences
+
+    for key1, value1 in TF_IFDwordAllSentences.items():
+        x=0 # initial score for a sentence
+        for key2, value2 in value1.items():
+            x=x+TF_IFDwordAllSentences[key1][key2] # weight of a sentence is the sum of tf_idf / length of sentence
+        weight_sentences[key1]=x / len(key1)
+
+    #calculating threshold
+    averageSentenceWeight = sum(list(weight_sentences.values())) / len(weight_sentences)
+
+    #generating summary
+    summary=''
+    for key, value in weight_sentences.items():
+        if(value > averageSentenceWeight):
+            summary=summary+key+' '
+    
+    return summary
 
 
 def getSummary(text):
@@ -196,6 +308,25 @@ def about_us():
 @main.route("/help", methods=["GET"])
 def help():
     return render_template("main/help.html")
+
+@main.route("/summary-file", methods=["POST"])
+@login_required
+def link_summary():
+    links = request.form
+    text = ''
+    m = ''
+    msg = ''
+
+    if len(links) == 0:
+        return redirect(url_for('main.homepage'))
+
+    for i in range(1, len(links)+1):
+        temp = web_scrap_return_text(request.form.get(f'link-input-{i}'))
+        text += (' ' + temp)
+    
+    msg = get_summary_link(text)
+    
+    return redirect(url_for('main.summarizer', m=m, msg=msg))
 
 
 @main.route("/summary-file", methods=["POST"])

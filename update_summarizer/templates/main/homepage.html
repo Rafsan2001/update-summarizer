@@ -38,7 +38,7 @@
               File
             </button>
           </li>
-          <!-- <li class="nav-item" role="presentation">
+          <li class="nav-item" role="presentation">
             <button
               class="nav-link px-4"
               id="pills-profile-tab"
@@ -51,7 +51,7 @@
             >
               Link
             </button>
-          </li> -->
+          </li>
           <li class="nav-item" role="presentation">
             <button
               class="nav-link px-4"
@@ -153,28 +153,31 @@
                   </button>
                   {% else %}
                   <a
-                  href="{{ url_for('auth.login')}}"
-                  type="submit"
-                  class="sum-get-btn my-2 ms-auto me-3 px-3"
-                  id="file-submit"
-                >
-                  Summary
-                </a>
-                {% endif %}
+                    href="{{ url_for('auth.login')}}"
+                    type="submit"
+                    class="sum-get-btn my-2 ms-auto me-3 px-3"
+                    id="file-submit"
+                  >
+                    Summary
+                  </a>
+                  {% endif %}
                 </div>
               </form>
             </div>
-            <!-- <div
+            <!-- Link -->
+            <div
               class="tab-pane fade"
               id="pills-profile"
               role="tabpanel"
               aria-labelledby="pills-profile-tab"
               tabindex="0"
             >
-              <form action="#" method="post" class="mt-2">
-                <div class="link-input-holder px-2">
-                  
-                </div>
+              <form
+                action="{{ url_for('main.link_summary') }}"
+                method="post"
+                class="mt-2"
+              >
+                <div class="link-input-holder px-2"></div>
                 <div class="d-flex align-items-center">
                   <div class="d-flex btn-counter-holder">
                     <button
@@ -200,10 +203,15 @@
                       +
                     </button>
                   </div>
-                    <a type="submit" class="sum-get-btn my-2 ms-auto me-3 px-3" href="#">Summary</a>
+                  <button
+                    type="submit"
+                    class="sum-get-btn my-2 ms-auto me-3 px-3"
+                  >
+                    Summary
+                  </button>
                 </div>
               </form>
-            </div> -->
+            </div>
             <div
               class="tab-pane fade mt-0"
               id="pills-contact"
@@ -225,28 +233,37 @@
                   </select>
                 </div>
               </div>
-              <form method="POST"
-              action="{{ url_for('main.summary_text') }}" 
-               class="mt-2" enctype="multipart/form-data">
+              <form
+                method="POST"
+                action="{{ url_for('main.summary_text') }}"
+                class="mt-2"
+                enctype="multipart/form-data"
+              >
                 <textarea
                   class="form-control text-input-field"
-                  placeholder="Enter your text" id="text" name="text"
+                  placeholder="Enter your text"
+                  id="text"
+                  name="text"
                 ></textarea>
                 <div class="d-flex">
                   {% if current_user.profile %}
-                 <button type="submit"
-                 class="sum-get-btn my-2 ms-auto me-3 px-3"
-                 id="summary-text">
-                  Summary
-                 </button>
-                    {% else %}
-                    <button
+                  <button
+                    type="submit"
+                    class="sum-get-btn my-2 ms-auto me-3 px-3"
+                    id="summary-text"
+                  >
+                    Summary
+                  </button>
+                  {% else %}
+                  <button
                     href="{{ url_for('auth.login')}}"
                     type="button"
                     class="sum-get-btn my-2 ms-auto me-3 px-3"
                     id="summary-text"
-                    > Summary </button>
-                    {% endif %}
+                  >
+                    Summary
+                  </button>
+                  {% endif %}
                 </div>
               </form>
             </div>
@@ -257,17 +274,16 @@
         <div class="d-flex flex-column">
           <div class="output-summary" id="output-holder">
             {% if msg %} {{msg}} {% else %}
-            <p class="text-mute text-center">
-              
-              
-            </p>
-            
-            {% endif %}
-            {{summary}}
+            <p class="text-mute text-center"></p>
+            {% endif %} {{summary}}
           </div>
           <div class="align-self-end me-3 mb-1">
-            <button class="btn btn-success"><i class="fa-solid fa-download"></i></button>
-            <a href="{{ url_for('main.homepage') }}" class="btn btn-primary"><i class="fa-solid fa-eraser"></i></a>
+            <button class="btn btn-success">
+              <i class="fa-solid fa-download"></i>
+            </button>
+            <a href="{{ url_for('main.homepage') }}" class="btn btn-primary"
+              ><i class="fa-solid fa-eraser"></i
+            ></a>
           </div>
         </div>
       </div>
