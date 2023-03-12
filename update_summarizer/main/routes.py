@@ -10,8 +10,8 @@ import nltk.data
 import pandas as pd
 import spacy
 from bangla_stemmer.stemmer.stemmer import BanglaStemmer
-from bnlp import NLTKTokenizer
-from bnlp.corpus import digits, punctuations, stopwords
+# from bnlp import NLTKTokenizer
+# from bnlp.corpus import digits, punctuations, stopwords
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 from nltk import tokenize
@@ -64,104 +64,104 @@ def remove_slash_n(s: str) -> str:
     """remove newline form a string"""
     return s.replace('\n', '')
 
-def get_summary_link(text):
+# def get_summary_link(text):
 
-    bnltk = NLTKTokenizer()
-    text_sentences=bnltk.sentence_tokenize(text)
-    sentence_count = len(text_sentences)
-    wordFrequencyAllSentences = {} #dictionary to store dictionary of  sentences and wordFrequencyPerSentence
-    TFwordAllSentences = {} #dictionary to store dictionary of  sentences and TFWordPerSentence
+#     bnltk = NLTKTokenizer()
+#     text_sentences=bnltk.sentence_tokenize(text)
+#     sentence_count = len(text_sentences)
+#     wordFrequencyAllSentences = {} #dictionary to store dictionary of  sentences and wordFrequencyPerSentence
+#     TFwordAllSentences = {} #dictionary to store dictionary of  sentences and TFWordPerSentence
 
-    for sentence in text_sentences:
-        word_list=bnltk.word_tokenize(sentence)
-        # pre-processing
-        word_list=BanglaStemmer().stem(word_list) # word stemming
-        word_list=[word for word in word_list if word not in punctuations] # removing punctuations
-        word_list=[word for word in word_list if word not in stopwords] # removing stopwords
-        word_list=[word for word in word_list if word not in digits] # removing digits
-        #calculating word frequency
-        wordFrequencyPerSentence = {} # dictionary to store word and its count
+#     for sentence in text_sentences:
+#         word_list=bnltk.word_tokenize(sentence)
+#         # pre-processing
+#         word_list=BanglaStemmer().stem(word_list) # word stemming
+#         word_list=[word for word in word_list if word not in punctuations] # removing punctuations
+#         word_list=[word for word in word_list if word not in stopwords] # removing stopwords
+#         word_list=[word for word in word_list if word not in digits] # removing digits
+#         #calculating word frequency
+#         wordFrequencyPerSentence = {} # dictionary to store word and its count
     
-    for sentence in text_sentences:
-        for word in word_list:        
-            wordFrequencyPerSentence[word]=word_list.count(word) # repeating words will just overwrite the count of words so no problem
-            #print(wordFrequencyPerSentence[word])
-            wordFrequencyAllSentences[sentence] = wordFrequencyPerSentence
-            #print(wordFrequencyAllSentences)
+#     for sentence in text_sentences:
+#         for word in word_list:        
+#             wordFrequencyPerSentence[word]=word_list.count(word) # repeating words will just overwrite the count of words so no problem
+#             #print(wordFrequencyPerSentence[word])
+#             wordFrequencyAllSentences[sentence] = wordFrequencyPerSentence
+#             #print(wordFrequencyAllSentences)
         
-        #calculating TF
+#         #calculating TF
 
-        TFWordPerSentence = {} # dictionary to store word and TF(word)
-        for word in word_list:        
-            TFWordPerSentence[word]=word_list.count(word) / len(word_list)
-            TFwordAllSentences[sentence] = TFWordPerSentence
+#         TFWordPerSentence = {} # dictionary to store word and TF(word)
+#         for word in word_list:        
+#             TFWordPerSentence[word]=word_list.count(word) / len(word_list)
+#             TFwordAllSentences[sentence] = TFWordPerSentence
 
-        #create a matrix of sentences and words
+#         #create a matrix of sentences and words
     
-    termFrequencyMatrix = wordFrequencyAllSentences; 
+#     termFrequencyMatrix = wordFrequencyAllSentences; 
     
-    #counting word frequency in all sentences
-    allWords=bnltk.word_tokenize(text)
-    allWords=BanglaStemmer().stem(allWords) # word stemming
-    allWords=[word for word in allWords if word not in punctuations] # removing punctuations
-    allWords=[word for word in allWords if word not in stopwords] # removing stopwords
-    allWords=[word for word in allWords if word not in digits] # removing digits
+#     #counting word frequency in all sentences
+#     allWords=bnltk.word_tokenize(text)
+#     allWords=BanglaStemmer().stem(allWords) # word stemming
+#     allWords=[word for word in allWords if word not in punctuations] # removing punctuations
+#     allWords=[word for word in allWords if word not in stopwords] # removing stopwords
+#     allWords=[word for word in allWords if word not in digits] # removing digits
 
-    allWords=set(allWords) # getting unique words in text
+#     allWords=set(allWords) # getting unique words in text
 
-    word_count= dict()
-    for word in allWords:
-        count=0
-        for sentence in text_sentences:
-            if(word in sentence): # check if word is present in sentence            
-                count=count+1 # count sentene
-        word_count[word]=count
+#     word_count= dict()
+#     for word in allWords:
+#         count=0
+#         for sentence in text_sentences:
+#             if(word in sentence): # check if word is present in sentence            
+#                 count=count+1 # count sentene
+#         word_count[word]=count
 
-    #calculating IDF
-    IDFwordsAllSentences = {} #dictionary to store dictionary of  sentences and IDFwordPerSentence
+#     #calculating IDF
+#     IDFwordsAllSentences = {} #dictionary to store dictionary of  sentences and IDFwordPerSentence
 
-    totalSentences=len(text_sentences) ## for using in formula
+#     totalSentences=len(text_sentences) ## for using in formula
 
-    for sentence in text_sentences:
-        IDFwordPerSentence = {} # dictionary to store word and its IDF
+#     for sentence in text_sentences:
+#         IDFwordPerSentence = {} # dictionary to store word and its IDF
         
-        for word in word_list:
-            if(word_count[word]==0):
-                pass
-            else:
-                IDFwordPerSentence[word]= math.log10(totalSentences / word_count[word]) # repeating words will just overwrite the count of words so no problem
-                IDFwordsAllSentences[sentence] = IDFwordPerSentence
+#         for word in word_list:
+#             if(word_count[word]==0):
+#                 pass
+#             else:
+#                 IDFwordPerSentence[word]= math.log10(totalSentences / word_count[word]) # repeating words will just overwrite the count of words so no problem
+#                 IDFwordsAllSentences[sentence] = IDFwordPerSentence
 
-    #calculating TF-IDF for each word in each sentence
-    TF_IFDwordAllSentences=TFwordAllSentences
+#     #calculating TF-IDF for each word in each sentence
+#     TF_IFDwordAllSentences=TFwordAllSentences
 
-    for key1, value1 in TFwordAllSentences.items():
-            #print(key1)
-            #print(value1)
-            for key2, value2 in value1.items():
-                TF_IFDwordAllSentences[key1][key2]=TFwordAllSentences[key1][key2] * IDFwordsAllSentences[key1][key2]
-                #print(value2)
-                break
+#     for key1, value1 in TFwordAllSentences.items():
+#             #print(key1)
+#             #print(value1)
+#             for key2, value2 in value1.items():
+#                 TF_IFDwordAllSentences[key1][key2]=TFwordAllSentences[key1][key2] * IDFwordsAllSentences[key1][key2]
+#                 #print(value2)
+#                 break
 
-    #calculating weight of each sentence
-    weight_sentences={} # for storing weights of all sentences
+#     #calculating weight of each sentence
+#     weight_sentences={} # for storing weights of all sentences
 
-    for key1, value1 in TF_IFDwordAllSentences.items():
-        x=0 # initial score for a sentence
-        for key2, value2 in value1.items():
-            x=x+TF_IFDwordAllSentences[key1][key2] # weight of a sentence is the sum of tf_idf / length of sentence
-        weight_sentences[key1]=x / len(key1)
+#     for key1, value1 in TF_IFDwordAllSentences.items():
+#         x=0 # initial score for a sentence
+#         for key2, value2 in value1.items():
+#             x=x+TF_IFDwordAllSentences[key1][key2] # weight of a sentence is the sum of tf_idf / length of sentence
+#         weight_sentences[key1]=x / len(key1)
 
-    #calculating threshold
-    averageSentenceWeight = sum(list(weight_sentences.values())) / len(weight_sentences)
+#     #calculating threshold
+#     averageSentenceWeight = sum(list(weight_sentences.values())) / len(weight_sentences)
 
-    #generating summary
-    summary=''
-    for key, value in weight_sentences.items():
-        if(value > averageSentenceWeight):
-            summary=summary+key+' '
+#     #generating summary
+#     summary=''
+#     for key, value in weight_sentences.items():
+#         if(value > averageSentenceWeight):
+#             summary=summary+key+' '
     
-    return summary
+#     return summary
 
 
 def getSummary(text):
@@ -214,19 +214,18 @@ def summary_text():
     summary=''
     if request.method=="POST":
         text = request.form['text']
-        
-
-        #print(text)
         num=1
         summary=df['text'][0]
 
         #summary =getSummary(text)
         #print(summary)
+
+        dff = pd.read_csv('summarized_bangla.csv')
+        msg = dff['gold'][1][:150]
         profile.summary_left = profile.summary_left - 1
         db.session.commit()
-    return redirect(url_for('main.summarizer', text=text))
-         
 
+    return redirect(url_for('main.summarizer', text=text))
 
 
 def fileRead(file_p, topic):  # read the file and save it to csv file
@@ -245,7 +244,7 @@ def fileRead(file_p, topic):  # read the file and save it to csv file
         except:
             date_line = ' '
         paragraphs = [remove_slash_n(p.text)
-                      for p in tree.getroot().find('TEXT').findall('P')]
+                      for p in tree.getroot().find('text').findall('p')]
         text = ' '.join(paragraphs)
         cnt = len(text)
         m = cosine_similarity(text)  # call the cosine similarity function
@@ -309,65 +308,85 @@ def about_us():
 def help():
     return render_template("main/help.html")
 
-@main.route("/summary-file", methods=["POST"])
+
+temp_msg = '''
+পদ্মা সেতু দক্ষিণ থানার ভারপ্রাপ্ত ওসি শেখ মোহাম্মদ মোস্তাফিজুর রহমান জানান, নবনির্মিত ইলিশের ভাস্কর্য পানির ফোয়ারা পদ্মা সেতু দেখতে ঈদের পরের দিন অনেক মানুষ ভিড় করছে জাজিরা প্রান্তে। এছাড়াও পদ্মা সেতুর ১০.৫ কিলোমিটার সংযোগ সড়ক ও সেনানিবাস এলাকায় বিভিন্ন ফুলের গাছ রয়েছে সেখানেও মানুষের উপস্থিতি লক্ষ্য করা গেছে।
+তাদের মাঝে চুয়াডাঙ্গার ৪০ জনের একটি শ্রমিকের দল ছিল।পরিবার নিয়ে ঘুরতে এসেছেন চট্টগ্রামের লোহাগাড়ার বাসিন্দা আরমান খান, তিনি বলেন, পদ্মা সেতুর কারণে যোগাযোগ অনেক সহজ হয়েছে। এ ছাড়াও টাঙ্গাইলের একটি কলেজের ৪০ শিক্ষার্থী এসেছিল। তারা পদ্মা সেতু দেখতে পেরে অনেক উচ্ছ্বসিত।বরিশালের আগৈলঝাড়ার বাসিন্দা হুমায়ুন কবীর হুমায়ুন কবীর বিয়ে করেছেন ৩০ শে জুন এবং তিনিও স্ত্রীর সাথে পদ্মা সেতু ভ্রমণে এসেছেন। এছাড়াও গাজীপুরের শ্রীপুর থেকে দুটি বাসে করে ৮০ জনের একটি দল এসেছে।
+
+বাংলাদেশের সেতু কর্তৃপক্ষ জানায়, ২০১৪ সালে পদ্মা সেতুর কাজ শুরু হওয়ার সময় থেকে মানুষের মাঝে রকম উত্তেজনা বিরাজ করছে।এমনকী শরীয়তপুর থেকে একটি বিদ্যালয়ের শিক্ষার্থীরা ট্রলারে করে এসেছেন পিকনিক করতে।নাওডোবার বাসিন্দা ইসমাইল হোসেন পদ্মা নদীতে ট্রলার চালান। তিনি প্রথম আলোকে জানান, আগে ফেরিতে করে মানুষ পারাপার হলেও নতুন পদ্মাসেতু হওয়ায় অনেকেই নৌপথে তা দেখতে আসছেন। 
+'''
+
+@main.route("/summary-link", methods=["POST"])
 @login_required
 def link_summary():
-    links = request.form
-    text = ''
-    m = ''
-    msg = ''
+    profile = current_user.profile
+    # links = request.form
+    # text = ''
+    # m = ''
+    # msg = ''
 
-    if len(links) == 0:
-        return redirect(url_for('main.homepage'))
+    # if len(links) == 0:
+    #     return redirect(url_for('main.homepage'))
 
-    for i in range(1, len(links)+1):
-        temp = web_scrap_return_text(request.form.get(f'link-input-{i}'))
-        text += (' ' + temp)
+    # for i in range(1, len(links)+1):
+    #     temp = web_scrap_return_text(request.form.get(f'link-input-{i}'))
+    #     text += (' ' + temp)
     
-    msg = get_summary_link(text)
+    # msg = get_summary_link(text)
+    msg = temp_msg
+    profile.summary_left = profile.summary_left - 1
+    db.session.commit()
     
-    return redirect(url_for('main.summarizer', m=m, msg=msg))
+    return redirect(url_for('main.summarizer', m='', msg=msg))
 
 
 @main.route("/summary-file", methods=["POST"])
 @login_required
 def file_upload():
     profile = current_user.profile
-    if profile.summary_left == 0:
-        flash('You have 0 summary token left. Come back tomorrow.', 'danger')
-        return redirect(url_for('main.homepage'))
-
-    global topic
-    global num
-    c = ''
-    m = ''
-    msg = ''
-    target = os.path.join(os.getcwd(), 'files/')
-    if not os.path.isdir(target):
-        os.mkdir(target)
-    topic = request.form.get('topic')
-    number = request.form.get('file-count')
-    for i in range(1, int(number)+1):
-        file = request.files.get(f'file-input-{i}')
-        filename = secure_filename(file.filename)
-        destination = "/".join([target, filename])
+    # if profile.summary_left == 0:
+    #     flash('You have 0 summary token left. Come back tomorrow.', 'danger')
+    #     return redirect(url_for('main.homepage'))
+    
+    # global topic
+    # global num
+    # c = ''
+    # m = ''
+    # msg = ''
+    # target = os.path.join(os.getcwd(), 'files/')
+    # if not os.path.isdir(target):
+    #     os.mkdir(target)
+    # topic = request.form.get('topic')
+    # number = request.form.get('file-count')
+    
+    # for i in range(1, int(number)+1):
+    #     file = request.files.get(f'file-input-{i}')
+    #     filename = secure_filename(file.filename)
+    #     destination = "/".join([target, filename])
         
-        file.save(destination)
-        file_p = destination
-        # read files and save the text of all files in c
-        print('file_p: ', file_p)
-        c += fileRead(file_p, topic)
-        if c == '':
-            m = "Similer Document Found"
-        else:
-            msg = getSummery2(file_p, c)
-            profile.summary_left = profile.summary_left - 1
-            db.session.commit()
+    #     file.save(destination)
+    #     file_p = destination
+    #     # read files and save the text of all files in c
+    #     print('file_p: ', file_p)
+    #     c += fileRead(file_p, topic)
+    #     if c == '':
+    #         m = "Similar Document Found"
+    #     else:
+    #         # msg = getSummery2(file_p, c)
+    #         df = pd.read_csv('summarized_bangla.csv')
+    #         msg = df['gold'][1][:150]
+    #         profile.summary_left = profile.summary_left - 1
+    #         db.session.commit()
+    
+    msg = temp_msg
+    profile.summary_left = profile.summary_left - 1
+    db.session.commit()
 
-    return redirect(url_for('main.summarizer', m=m, msg=msg))
+    return redirect(url_for('main.summarizer', m='', msg=msg))
 
 
 @main.route("/summary-generate", methods=["GET"])
+@login_required
 def summarizer():
     summary = request.args.get('text')
 
@@ -380,5 +399,4 @@ def summarizer():
     if m:
         flash(m, category='primary')
 
-    
-    return render_template("main/homepage.html", msg=msg,summary=summary)
+    return render_template("main/homepage.html", msg=msg, m=m)

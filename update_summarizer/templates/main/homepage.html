@@ -90,19 +90,6 @@
                 action="{{ url_for('main.file_upload') }}"
                 enctype="multipart/form-data"
               >
-                <div class="row" style="margin: 5px 11px 0 0">
-                  <label class="col-md-3 col-form-label">Select a Topic:</label>
-                  <div class="col-md-9">
-                    <select class="form-select" name="topic">
-                      <option value="Bangladesh" selected>Bangladesh</option>
-                      <option value="International">International</option>
-                      <option value="Politics">Politics</option>
-                      <option value="Entertainments">Entertainments</option>
-                      <option value="Buisness">Buisness</option>
-                      <option value="Sports">Sports</option>
-                    </select>
-                  </div>
-                </div>
                 <div class="file-input-holder px-2">
                   <input
                     type="number"
@@ -220,19 +207,6 @@
               tabindex="0"
             >
               <!-- Text -->
-              <div class="row" style="margin: 5px 11px 0 0">
-                <label class="col-md-3 col-form-label">Select a Topic:</label>
-                <div class="col-md-9">
-                  <select class="form-select" name="topic">
-                    <option value="Bangladesh" selected>Bangladesh</option>
-                    <option value="International">International</option>
-                    <option value="Politics">Politics</option>
-                    <option value="Entertainments">Entertainments</option>
-                    <option value="Buisness">Buisness</option>
-                    <option value="Sports">Sports</option>
-                  </select>
-                </div>
-              </div>
               <form
                 method="POST"
                 action="{{ url_for('main.summary_text') }}"
@@ -275,7 +249,7 @@
           <div class="output-summary" id="output-holder">
             {% if msg %} {{msg}} {% else %}
             <p class="text-mute text-center"></p>
-            {% endif %} {{summary}}
+            {% endif %}
           </div>
           <div class="align-self-end me-3 mb-1">
             <button class="btn btn-success">
